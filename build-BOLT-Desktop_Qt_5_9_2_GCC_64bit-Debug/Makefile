@@ -51,9 +51,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../BOLT/main.cpp \
-		../BOLT/bolt.cpp moc_bolt.cpp
+		../BOLT/bolt.cpp qrc_bolt.cpp \
+		moc_bolt.cpp
 OBJECTS       = main.o \
 		bolt.o \
+		qrc_bolt.o \
 		moc_bolt.o
 DIST          = ../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/common/unix.conf \
@@ -215,6 +217,7 @@ DIST          = ../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
+		../BOLT/.qmake.stash \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -407,6 +410,7 @@ Makefile: ../BOLT/BOLT.pro ../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -427,6 +431,7 @@ Makefile: ../BOLT/BOLT.pro ../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.9.2/gcc_64/mkspecs/features/lex.prf \
 		../BOLT/BOLT.pro \
+		../BOLT/bolt.qrc \
 		../../../Qt/5.9.2/gcc_64/lib/libQt5Widgets.prl \
 		../../../Qt/5.9.2/gcc_64/lib/libQt5Gui.prl \
 		../../../Qt/5.9.2/gcc_64/lib/libQt5Core.prl
@@ -591,6 +596,7 @@ Makefile: ../BOLT/BOLT.pro ../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -611,6 +617,7 @@ Makefile: ../BOLT/BOLT.pro ../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/yacc.prf:
 ../../../Qt/5.9.2/gcc_64/mkspecs/features/lex.prf:
 ../BOLT/BOLT.pro:
+../BOLT/bolt.qrc:
 ../../../Qt/5.9.2/gcc_64/lib/libQt5Widgets.prl:
 ../../../Qt/5.9.2/gcc_64/lib/libQt5Gui.prl:
 ../../../Qt/5.9.2/gcc_64/lib/libQt5Core.prl:
@@ -628,6 +635,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../BOLT/bolt.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../BOLT/bolt.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../BOLT/main.cpp ../BOLT/bolt.cpp $(DISTDIR)/
@@ -655,8 +663,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_bolt.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_bolt.cpp
+qrc_bolt.cpp: ../BOLT/bolt.qrc \
+		../../../Qt/5.9.2/gcc_64/bin/rcc \
+		../BOLT/images/g1.jpg
+	/home/dusica/Qt/5.9.2/gcc_64/bin/rcc -name bolt ../BOLT/bolt.qrc -o qrc_bolt.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -789,7 +803,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -897,13 +911,229 @@ main.o: ../BOLT/main.cpp ../BOLT/bolt.h \
 		../../../Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.9.2/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QtGui \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QtGuiDepends \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QtCore \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QtCoreDepends \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractanimation.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractproxymodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractstate.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstracttransition.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qanimationgroup.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qarraydataops.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qbitarray.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qbuffer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qbytearraymatcher.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcache.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcollator.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcommandlineoption.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcommandlineparser.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcryptographichash.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qdeadlinetimer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qdir.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qdiriterator.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qeasingcurve.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qendian.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qeventtransition.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qexception.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfactoryinterface.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfileselector.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QObject \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QStringList \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfinalstate.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfuture.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qrunnable.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qresultstore.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qfuturewatcher.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qhistorystate.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qidentityproxymodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qjsonarray.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qjsondocument.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qjsonobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qlibrary.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qlibraryinfo.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qversionnumber.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qlinkedlist.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qlockfile.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qloggingcategory.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmath.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmimedata.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmimedatabase.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qmimetype.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qpauseanimation.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qplugin.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qpointer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qpluginloader.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qprocess.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qpropertyanimation.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qvariantanimation.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qqueue.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qreadwritelock.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qresource.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsavefile.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsemaphore.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsettings.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsharedmemory.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsignaltransition.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsocketnotifier.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstack.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstate.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstatemachine.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qstringlistmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qsystemsemaphore.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtemporarydir.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QScopedPointer \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtemporaryfile.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtextcodec.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qthread.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qthreadpool.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qthreadstorage.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtimeline.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtimezone.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtranslator.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/quuid.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qwaitcondition.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qwineventnotifier.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qxmlstream.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qtcoreversion.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextlayout.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qglyphrun.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qrawfont.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qfontdatabase.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qaccessible.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qaccessiblebridge.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qaccessibleobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qaccessibleplugin.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qbackingstore.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qwindow.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QEvent \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QMargins \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QRect \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qsurface.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qbitmap.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qclipboard.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qdrag.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qgenericplugin.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qgenericpluginfactory.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qiconengine.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qiconengineplugin.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qimageiohandler.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qimagereader.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qimagewriter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qmatrix4x4.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qvector4d.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qquaternion.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qmovie.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qoffscreensurface.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengl.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qt_windows.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglext.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglbuffer.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglcontext.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglversionfunctions.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengldebug.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglextrafunctions.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglfunctions.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglframebufferobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglpaintdevice.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglpixeltransferoptions.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglshaderprogram.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengltexture.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengltextureblitter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QMatrix3x3 \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QMatrix4x4 \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopengltimerquery.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglvertexarrayobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qopenglwindow.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QPaintDeviceWindow \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpaintdevicewindow.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QWindow \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QPaintDevice \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QOpenGLContext \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QImage \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpagedpaintdevice.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpagelayout.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpagesize.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpaintengine.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpdfwriter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpicture.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpictureformatplugin.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qpixmapcache.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qrasterwindow.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qscreen.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QList \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QSize \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QSizeF \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/QTransform \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qsessionmanager.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qstandarditemmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qstatictext.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qstylehints.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qsyntaxhighlighter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextobject.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextdocumentfragment.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextdocumentwriter.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtextlist.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtexttable.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qtguiversion.h \
 		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.9.2/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QGraphicsScene
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../BOLT/main.cpp
 
 bolt.o: ../BOLT/bolt.cpp ../BOLT/bolt.h \
@@ -1010,8 +1240,47 @@ bolt.o: ../BOLT/bolt.cpp ../BOLT/bolt.h \
 		../../../Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.9.2/gcc_64/include/QtGui/qicon.h \
-		ui_bolt.h
+		ui_bolt.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QStatusBar \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../Qt/5.9.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bolt.o ../BOLT/bolt.cpp
+
+qrc_bolt.o: qrc_bolt.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_bolt.o qrc_bolt.cpp
 
 moc_bolt.o: moc_bolt.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bolt.o moc_bolt.cpp
