@@ -1,14 +1,14 @@
 #include "bolt.h"
 #include "ui_bolt.h"
 
-MainWindow::MainWindow(QWidget *parent)
+Bolt::Bolt(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::Bolt)
 {
     ui->setupUi(this);
 }
 
-MainWindow::~MainWindow()
+Bolt::~Bolt()
 {
     delete ui;
 }
