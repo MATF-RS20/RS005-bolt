@@ -4,7 +4,7 @@
 **Članovi tima:**
    + Jovana Jelenković
    + Nevena Marković
-   + Dušica Mitrović mi07124@alas.matf.bg.ac.rs
+   + Dušica Mitrović dusica8knezevic@gmail.com
   
   ***
 **Kratak opis igrice:**
