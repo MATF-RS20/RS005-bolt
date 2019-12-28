@@ -1,7 +1,5 @@
 #include "bolt.h"
-
 #include <iostream>
-#include <GL/glut.h>
 #include <QtGui>
 #include <QApplication>
 #include <QGraphicsView>
@@ -21,7 +19,7 @@ int main(int argc, char *argv[])
 
     // Inicijalizujemo scenu
     QGraphicsScene scene;
-    scene.setSceneRect(-300, -300, 600, 600);
+    scene.setSceneRect(-300, -300, 800, 400);
 
     // Iskljucujemo indeksiranje pozicija elemenata scene
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -32,10 +30,8 @@ int main(int argc, char *argv[])
     // Ukljucujemo anti-aliasing
     view.setRenderHint(QPainter::Antialiasing);
 
-    // Postavljamo sliku za pozadinu
-    view.setStyleSheet("background-image: url(:/images/g1.jpg);");
-
-    view.resize(1000, 600);
+    /*/ Postavljamo sliku za pozadinu
+    view.setStyleSheet("background-image: url(:/images/g1.jpg);"); */
 
     view.show();
     return a.exec();
