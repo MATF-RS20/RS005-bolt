@@ -1,12 +1,21 @@
 #include "bolt.h"
 
+#include <iostream>
+#include <GL/glut.h>
 #include <QtGui>
 #include <QApplication>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
+void instructions(){
+    std::cout<<"Pokreni animaciju dugmetom G, pauziraj dugmetom P."<<std::endl;
+    std::cout<<"Za kretanje tenka koristiti strelice na levo i na desno."<<std::endl;
+    std::cout<<"Za ispaljivanje munje koristi SPACE dugme na tastaturi."<<std::endl;
+}
 int main(int argc, char *argv[])
 {
+    instructions();
+
     QApplication a(argc, argv);
     Bolt w;
 
@@ -26,7 +35,7 @@ int main(int argc, char *argv[])
     // Postavljamo sliku za pozadinu
     view.setStyleSheet("background-image: url(:/images/g1.jpg);");
 
-    view.resize(1000, 605);
+    view.resize(1000, 600);
 
     view.show();
     return a.exec();
