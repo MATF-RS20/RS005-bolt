@@ -2,20 +2,25 @@
 #define BOLT_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include <QtGui>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class Bolt; }
-QT_END_NAMESPACE
+namespace Ui { class Bolt;}
+
 
 class Bolt : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Bolt(QWidget *parent = nullptr);
+    explicit Bolt(QWidget *parent = nullptr);
     ~Bolt();
+
 
 private:
     Ui::Bolt *ui;
+    void instructions();
 };
 #endif // BOLT_H

@@ -19,12 +19,10 @@ LIBS += -lglut -lGLU
 
 SOURCES += \
     main.cpp \
-    bolt.cpp \
-    opnglwidget.cpp
+    bolt.cpp
 
 HEADERS += \
-    bolt.h \
-    opnglwidget.h
+    bolt.h
 
 FORMS += \
     bolt.ui
