@@ -21,6 +21,7 @@ SOURCES += \
     igrica1.cpp \
     igrica2.cpp \
     igrica3.cpp \
+    lopta.cpp \
     main.cpp \
     bolt.cpp
 
@@ -28,7 +29,8 @@ HEADERS += \
     bolt.hpp \
     igrica1.hpp \
     igrica2.hpp \
-    igrica3.hpp
+    igrica3.hpp \
+    lopta.hpp
 
 FORMS += \
     bolt.ui \

@@ -20,7 +20,9 @@ public:
 
 private:
     Ui::Igrica1 *ui;
-//    QGraphicsScene *scene;
+    QGraphicsScene *scene;
+
+    void pokreniIgricu();
 };
 
 #endif // IGRICA1_HPP
