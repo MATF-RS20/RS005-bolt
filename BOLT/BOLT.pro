@@ -18,14 +18,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lglut -lGLU
 
 SOURCES += \
+    igrica1.cpp \
+    igrica2.cpp \
+    igrica3.cpp \
     main.cpp \
     bolt.cpp
 
 HEADERS += \
-    bolt.h
+    bolt.hpp \
+    igrica1.hpp \
+    igrica2.hpp \
+    igrica3.hpp
 
 FORMS += \
-    bolt.ui
+    bolt.ui \
+    igrica1.ui \
+    igrica2.ui \
+    igrica3.ui
 
 RESOURCES += \
     bolt.qrc

@@ -1,9 +1,8 @@
-#include "bolt.h"
+#include "bolt.hpp"
 #include <iostream>
 #include <QtGui>
 #include <QApplication>
-#include <QGraphicsView>
-#include <QGraphicsScene>
+
 
 
 int main(int argc, char *argv[])
