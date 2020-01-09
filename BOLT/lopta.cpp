@@ -32,17 +32,17 @@ void Lopta::advance(int step)
 {
     if (!step)
         return;
-
+    //Razdvajam definisanje kretanja loptice u zavisnosti od izbora igrice
     if (igrica == 1) {
         //DUSICA
     }
 
     else if (igrica == 2) {
-        // JOVANA
+        // NEVENA
     }
 
     else if (igrica == 3) {
-        // NEVENA
+        // JOVANA
     }
 }
 
