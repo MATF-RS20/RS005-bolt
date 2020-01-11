@@ -45,9 +45,9 @@ void Igrica1::pokreniIgricu()
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 
     // Postavljamo sliku za pozadinu
-    ui->graphicsView->setStyleSheet("background-image: url(:/images/g1.jpg);");
+    setStyleSheet("background-image: url(:/images/g1.jpg);");
 
-    Lopta *lopta = new Lopta(50, 1);
+    Lopta *lopta = new Lopta(60, 1);
     scene->addItem(lopta);
 
     QTimer *timer = new QTimer(this);

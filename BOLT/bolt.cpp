@@ -17,11 +17,12 @@ Bolt::Bolt(QWidget *parent)
     instructions();
 
     // Postavljanje pozadine
-//    QPixmap background(":/images/g1.jpg");
-//    background = background.scaled(this->size(), Qt::IgnoreAspectRatio);
-//    QPalette pallete;
-//    pallete.setBrush(QPalette::Background, background);
-//    setPalette(palette());
+    QPixmap background(":/images/Game_Background.png");
+    background = background.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette paleta = palette();
+    paleta.setBrush(QPalette::Background, background);
+    setPalette(paleta);
+    show();
 }
 
 
