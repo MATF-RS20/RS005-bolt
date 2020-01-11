@@ -22,6 +22,9 @@ private:
     Ui::Igrica1 *ui;
     QGraphicsScene *scene;
 
+    int windowWidth;
+    int windowHeight;
+
     void pokreniIgricu();
 };
 

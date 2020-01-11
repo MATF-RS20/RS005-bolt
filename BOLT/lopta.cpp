@@ -3,9 +3,12 @@
 #include <QDebug>
 
 Lopta::Lopta(int radius, int igrica)
-    : radius(radius), igrica(igrica)
+    : radius(radius), igrica(igrica),
+      directionX(5), directionY(5)
 {
+    //setSelected(true);
 
+    setPos(450,100);
 }
 
 void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -18,13 +21,13 @@ void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
 QRectF Lopta::boundingRect() const
 {
-    return QRectF(0,0,50,50);
+    return QRectF(-radius-2, -radius-2, radius*2+4 , radius*2+4);
 }
 
 QPainterPath Lopta::shape() const
 {
     QPainterPath path;
-    path.addEllipse(-25, -25, 25, 25);
+    path.addEllipse(QPoint(0,0), radius, radius);
     return path;
 }
 
@@ -35,6 +38,13 @@ void Lopta::advance(int step)
     //Razdvajam definisanje kretanja loptice u zavisnosti od izbora igrice
     if (igrica == 1) {
         //DUSICA
+        moveBy(directionX/2,directionY/3);
+        if(x() <= 0+radius || x() >= 900-radius){
+            directionX = -directionX;
+        }
+        if(y() <= 0+radius || y() >= 600-radius){
+            directionY = -directionY;
+        }
     }
 
     else if (igrica == 2) {
@@ -44,6 +54,11 @@ void Lopta::advance(int step)
     else if (igrica == 3) {
         // JOVANA
     }
+}
+
+int Lopta::getRadius()
+{
+    return radius;
 }
 
 void Lopta::keyPressEvent(QKeyEvent *event)

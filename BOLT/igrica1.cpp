@@ -4,16 +4,20 @@
 
 #include <QTimer>
 #include <QDebug>
+//#include <QRandomGenerator>
 
 Igrica1::Igrica1(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Igrica1)
+    QWidget(parent), ui(new Ui::Igrica1),
+    windowWidth(900), windowHeight(600)
 {
     ui->setupUi(this);
 
     setWindowTitle("Bolt - Igrica 1");
-    resize(900, 600);
-    move(300, 100);
+
+    /* Velicinu prozora stavljam u promenljivu,
+     * da bi velicina view-a i scene mogla da prati velicinu prozor.*/
+    setFixedSize(windowWidth+5,windowHeight+5);
+    move(250, 750);
 
     pokreniIgricu();
 }
@@ -28,13 +32,8 @@ void Igrica1::pokreniIgricu()
     scene = new QGraphicsScene(this);
 
     // Inicijalizujemo scenu
-    int x = ui->graphicsView->geometry().x();
-    int y = ui->graphicsView->geometry().y();
-
-    int width = ui->graphicsView->geometry().width();
-    int height= ui->graphicsView->geometry().height();
-
-    scene->setSceneRect(x, y, width, height);
+    ui->graphicsView->setSceneRect(0, 0, windowWidth, windowHeight);
+    scene->setSceneRect(0, 0, windowWidth, windowHeight);
 
     // Dodajemo scenu na view
     ui->graphicsView->setScene(scene);
@@ -49,10 +48,9 @@ void Igrica1::pokreniIgricu()
     ui->graphicsView->setStyleSheet("background-image: url(:/images/g1.jpg);");
 
     Lopta *lopta = new Lopta(50, 1);
-    lopta->setPos(0, 0);
     scene->addItem(lopta);
 
-    QTimer timer;
-    QObject::connect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer.start(1000/33);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    timer->start(1000/150);  //postavljamo na 150 fps
 }
