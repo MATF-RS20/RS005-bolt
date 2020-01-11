@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>images/g1.jpg</file>
         <file>images/Game_Background.png</file>
+        <file>images/slb1.jpg</file>
     </qresource>
 </RCC>
