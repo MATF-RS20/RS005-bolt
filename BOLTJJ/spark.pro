@@ -1,4 +1,4 @@
-QT       += core gui opengl
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,37 +15,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-LIBS += -lglut -lGLU
-
 SOURCES += \
-    igrica1.cpp \
-    igrica2.cpp \
-    igrica3.cpp \
-    lopta.cpp \
     main.cpp \
-    bolt.cpp \
-    common/src/tank.cpp \
-    common/src/projectile.cpp \
-    common/src/invadertank.cpp
+    tank.cpp
 
 HEADERS += \
-    bolt.hpp \
-    igrica1.hpp \
-    igrica2.hpp \
-    igrica3.hpp \
-    lopta.hpp \
-    common/headers/tank.h \
-    common/headers/projectile.h \
-    common/headers/invadertank.h
+    tank.h
 
-FORMS += \
-    bolt.ui \
-    igrica1.ui \
-    igrica2.ui \
-    igrica3.ui
-
-RESOURCES += \
-    bolt.qrc
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
