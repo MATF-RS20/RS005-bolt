@@ -1,5 +1,6 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
+
 #include <QGraphicsItem>
 
 class projectile:public QGraphicsItem

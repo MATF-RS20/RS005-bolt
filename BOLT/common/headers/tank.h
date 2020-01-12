@@ -1,8 +1,7 @@
-#include <QGraphicsItem>
-
 #ifndef TANK_H
 #define TANK_H
 
+#include <QGraphicsItem>
 
 class Tank:public QGraphicsItem
 {

@@ -1,5 +1,5 @@
-#include "invadertank.h"
-#include "projectile.h"
+#include "common/headers/invadertank.h"
+#include "common/headers/projectile.h"
 #include <QGraphicsScene>
 InvaderTank::InvaderTank()
 {

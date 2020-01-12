@@ -1,10 +1,10 @@
 #include "igrica1.hpp"
 #include "ui_igrica1.h"
 #include "lopta.hpp"
+#include "common/headers/invadertank.h"
 
 #include <QTimer>
 #include <QDebug>
-//#include <QRandomGenerator>
 
 Igrica1::Igrica1(QWidget *parent) :
     QWidget(parent), ui(new Ui::Igrica1),
@@ -49,6 +49,9 @@ void Igrica1::pokreniIgricu()
 
     Lopta *lopta = new Lopta(60, 1);
     scene->addItem(lopta);
+
+    InvaderTank *tenk = new InvaderTank();
+    scene->addItem(tenk);
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));

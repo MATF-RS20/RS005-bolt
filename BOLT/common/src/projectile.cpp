@@ -1,4 +1,4 @@
-#include "projectile.h"
+#include "common/headers/projectile.h"
 #include <QPainter>
 projectile::projectile()
 {

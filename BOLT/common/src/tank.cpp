@@ -1,4 +1,4 @@
-#include "tank.h"
+#include "common/headers/tank.h"
 #include <iostream>
 #include <QPainter>
 #include <QKeyEvent>
