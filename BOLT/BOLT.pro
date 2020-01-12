@@ -23,14 +23,20 @@ SOURCES += \
     igrica3.cpp \
     lopta.cpp \
     main.cpp \
-    bolt.cpp
+    bolt.cpp \
+    common/src/tank.cpp \
+    common/src/projectile.cpp \
+    common/src/invadertank.cpp
 
 HEADERS += \
     bolt.hpp \
     igrica1.hpp \
     igrica2.hpp \
     igrica3.hpp \
-    lopta.hpp
+    lopta.hpp \
+    common/headers/tank.h \
+    common/headers/projectile.h \
+    common/headers/invadertank.h
 
 FORMS += \
     bolt.ui \
