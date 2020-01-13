@@ -5,12 +5,12 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-class Lopta : public QGraphicsItem
+class Objekat : public QGraphicsItem
 {
 public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
-    Lopta(int radius, int igrica);
+    Objekat(int radius, int igrica);
 
     int getRadius();
 

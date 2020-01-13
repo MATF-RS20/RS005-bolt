@@ -1,37 +1,39 @@
-#include "headers/lopta.hpp"
+#include "headers/objekat.hpp"
 
 #include <QDebug>
 
-Lopta::Lopta(int radius, int igrica)
+Objekat::Objekat(int radius, int igrica)
     : radius(radius), igrica(igrica),
       directionX(5), directionY(5)
 {
-    //setSelected(true);
-
     setPos(450,100);
+    setZValue(1);
 }
 
-void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
     painter->setBrush(Qt::red);
+    if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
+        painter->setBrush(Qt::yellow);
+    }
     painter->drawEllipse(QPoint(0, 0), radius, radius);
 }
 
-QRectF Lopta::boundingRect() const
+QRectF Objekat::boundingRect() const
 {
     return QRectF(-radius-2, -radius-2, radius*2+4 , radius*2+4);
 }
 
-QPainterPath Lopta::shape() const
+QPainterPath Objekat::shape() const
 {
     QPainterPath path;
     path.addEllipse(QPoint(0,0), radius, radius);
     return path;
 }
 
-void Lopta::advance(int step)
+void Objekat::advance(int step)
 {
     if (!step)
         return;
@@ -56,12 +58,12 @@ void Lopta::advance(int step)
     }
 }
 
-int Lopta::getRadius()
+int Objekat::getRadius()
 {
     return radius;
 }
 
-void Lopta::keyPressEvent(QKeyEvent *event)
+void Objekat::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
         case Qt::Key_Right:

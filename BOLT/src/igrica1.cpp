@@ -1,6 +1,6 @@
 #include "headers/igrica1.hpp"
 #include "ui_igrica1.h"
-#include "headers/lopta.hpp"
+#include "headers/objekat.hpp"
 #include "common/headers/invadertank.h"
 
 #include <QTimer>
@@ -47,10 +47,11 @@ void Igrica1::pokreniIgricu()
     // Postavljamo sliku za pozadinu
     setStyleSheet("background-image: url(:/images/g1.jpg);");
 
-    Lopta *lopta = new Lopta(60, 1);
-    scene->addItem(lopta);
+    Objekat *objLopta = new Objekat(60, 1);
+    scene->addItem(objLopta);
 
     InvaderTank *tenk = new InvaderTank();
+    tenk->setPos(400, 450);
     scene->addItem(tenk);
 
     QTimer *timer = new QTimer(this);

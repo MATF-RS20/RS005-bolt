@@ -21,22 +21,22 @@ SOURCES += \
     src/igrica1.cpp \
     src/igrica2.cpp \
     src/igrica3.cpp \
-    src/lopta.cpp \
     src/main.cpp \
     src/bolt.cpp \
     common/src/tank.cpp \
     common/src/projectile.cpp \
-    common/src/invadertank.cpp
+    common/src/invadertank.cpp \
+    src/objekat.cpp
 
 HEADERS += \
     headers/bolt.hpp \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
     headers/igrica3.hpp \
-    headers/lopta.hpp \
     common/headers/tank.h \
     common/headers/projectile.h \
-    common/headers/invadertank.h
+    common/headers/invadertank.h \
+    headers/objekat.hpp
 
 FORMS += \
     forms/bolt.ui \
@@ -51,3 +51,6 @@ RESOURCES += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    images/tenk.png
