@@ -2,6 +2,7 @@
 #define TANK_H
 
 #include <QGraphicsItem>
+#include "headers/projectile.h"
 
 class Tank:public QGraphicsItem
 {
@@ -19,8 +20,8 @@ public:
 
     void keyPressEvent(QKeyEvent * event) override;
     void advance(int step) override;
-    void virtual fire() = 0;
-//    void virtual fire();
+//    void virtual fire() = 0;
+    void virtual fire();
 
 private:
     int _life;

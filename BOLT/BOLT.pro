@@ -23,9 +23,9 @@ SOURCES += \
     src/igrica3.cpp \
     src/main.cpp \
     src/bolt.cpp \
-    common/src/tank.cpp \
-    common/src/projectile.cpp \
-    common/src/invadertank.cpp \
+    src/tank.cpp \
+    src/projectile.cpp \
+    src/invadertank.cpp \
     src/objekat.cpp
 
 HEADERS += \
@@ -33,9 +33,9 @@ HEADERS += \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
     headers/igrica3.hpp \
-    common/headers/tank.h \
-    common/headers/projectile.h \
-    common/headers/invadertank.h \
+    headers/tank.h \
+    headers/projectile.h \
+    headers/invadertank.h \
     headers/objekat.hpp
 
 FORMS += \

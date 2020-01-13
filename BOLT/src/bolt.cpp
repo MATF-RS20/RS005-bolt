@@ -33,7 +33,6 @@ Bolt::~Bolt()
 
 
 void Bolt::instructions() {
-    qDebug() <<"Pokreni animaciju dugmetom G, pauziraj dugmetom P.";
     qDebug() <<"Za kretanje tenka koristiti strelice na levo i na desno.";
     qDebug() << "Za ispaljivanje munje koristi SPACE dugme na tastaturi.";
 }

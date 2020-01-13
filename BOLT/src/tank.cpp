@@ -1,4 +1,4 @@
-#include "common/headers/tank.h"
+#include "headers/tank.h"
 #include <iostream>
 #include <QPainter>
 #include <QKeyEvent>
@@ -8,19 +8,26 @@ Tank::Tank(int life,int movementSpeed, int igrica, int tankWidth, int tankHeigth
     :_life(life),_movementSpeed(movementSpeed), _igrica(igrica),
       _tankWidth(tankWidth), _tankHeigth(tankHeigth)
 {
-//    setActive(true);
-    setSelected(true);
+    setPos(400, 450);
 }
 
 QRectF Tank::boundingRect() const
 {
+    if(_igrica == 3){
+        return QRectF(-50, -50, _tankWidth, _tankHeigth);
+    }
     return QRectF(0, 0, _tankWidth, _tankHeigth);
 }
 
 QPainterPath Tank::shape() const
 {
     QPainterPath path;
-    path.addRect(0, 0, _tankWidth, _tankHeigth);
+    if(_igrica == 1){
+         path.addRect(0, 0, _tankWidth, _tankHeigth);
+    }else if(_igrica == 3){
+         path.addRect(-50, -50, _tankWidth, _tankHeigth);
+    }
+
     return path;
 }
 
@@ -30,7 +37,6 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 //    painter->setBrush(Qt::green);
 //    painter->drawRect(boundingRect());
-
 //    painter->setBrush(Qt::blue);
 //    painter->drawPath(shape());
 
@@ -66,20 +72,24 @@ void Tank::keyPressEvent(QKeyEvent * event){
         fire();
     }
     event->setAccepted(true);
-    update();
+//   update();
 }
 
 void Tank::advance(int step)
 {
-
-
-    if (!step)
-    {
+    if (!step) {
         return;
     }
 
     if(!this->hasFocus()){
         this->setFocus();
     }
+}
+
+void Tank::fire()
+{
+    Projectile *t = new Projectile();
+    t->setPos(x(),y()-37.5);
+    // TODO
 }
 

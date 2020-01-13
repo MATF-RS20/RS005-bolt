@@ -1,21 +1,21 @@
-#include "common/headers/projectile.h"
+#include "headers/projectile.h"
 #include <QPainter>
-projectile::projectile()
+Projectile::Projectile()
 {
 
 }
-QRectF projectile::boundingRect() const
+QRectF Projectile::boundingRect() const
 {
     return QRectF(-3,-4,6,8);
 }
 
-QPainterPath projectile::shape() const
+QPainterPath Projectile::shape() const
 {
     QPainterPath path;
     path.addRect(-3,-4,6,8);
     return path;
 }
-void projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+void Projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     Q_UNUSED(option)
 
@@ -26,7 +26,7 @@ void projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 
 
-void projectile::advance(int step)
+void Projectile::advance(int step)
 {
 
     if (!step)

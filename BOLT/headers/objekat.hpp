@@ -25,12 +25,12 @@ protected:
     void advance(int step) override;
 
 private:
-    int radius;
-    int igrica;     // Vrednost: 1,2,3. Podatak koji nam ukazuje na to koja je igrica trenutno pokrenuta
+    int _radius;
+    int _igrica;     // Vrednost: 1,2,3. Podatak koji nam ukazuje na to koja je igrica trenutno pokrenuta
 
     /*Smerovi u kojima se lopta krece*/
-    int directionX;
-    int directionY;
+    int _directionX;
+    int _directionY;
 };
 
 #endif // LOPTA_HPP

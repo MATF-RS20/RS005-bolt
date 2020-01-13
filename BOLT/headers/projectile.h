@@ -3,12 +3,12 @@
 
 #include <QGraphicsItem>
 
-class projectile:public QGraphicsItem
+class Projectile:public QGraphicsItem
 {
 public:
-    projectile();
-    QRectF boundingRect() const override;
+    Projectile();
 
+    QRectF boundingRect() const override;
 
     QPainterPath shape() const override;
 

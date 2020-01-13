@@ -1,14 +1,14 @@
 #include "headers/igrica1.hpp"
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
-#include "common/headers/invadertank.h"
+#include "headers/tank.h"
 
 #include <QTimer>
 #include <QDebug>
 
 Igrica1::Igrica1(QWidget *parent) :
     QWidget(parent), ui(new Ui::Igrica1),
-    windowWidth(900), windowHeight(600)
+    _windowWidth(900), _windowHeight(600)
 {
     ui->setupUi(this);
 
@@ -16,7 +16,7 @@ Igrica1::Igrica1(QWidget *parent) :
 
     /* Velicinu prozora stavljam u promenljivu,
      * da bi velicina view-a i scene mogla da prati velicinu prozor.*/
-    setFixedSize(windowWidth+5,windowHeight+5);
+    setFixedSize(_windowWidth+5,_windowHeight+5);
     move(250, 750);
 
     pokreniIgricu();
@@ -32,8 +32,8 @@ void Igrica1::pokreniIgricu()
     scene = new QGraphicsScene(this);
 
     // Inicijalizujemo scenu
-    ui->graphicsView->setSceneRect(0, 0, windowWidth, windowHeight);
-    scene->setSceneRect(0, 0, windowWidth, windowHeight);
+    ui->graphicsView->setSceneRect(0, 0, _windowWidth, _windowHeight);
+    scene->setSceneRect(0, 0, _windowWidth, _windowHeight);
 
     // Dodajemo scenu na view
     ui->graphicsView->setScene(scene);
@@ -50,9 +50,8 @@ void Igrica1::pokreniIgricu()
     Objekat *objLopta = new Objekat(60, 1);
     scene->addItem(objLopta);
 
-    InvaderTank *tenk = new InvaderTank();
-    tenk->setPos(400, 450);
-    scene->addItem(tenk);
+    Tank *tank = new Tank(3, 10, 1, 70, 150);
+    scene->addItem(tank);
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
