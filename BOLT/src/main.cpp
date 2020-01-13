@@ -1,4 +1,4 @@
-#include "bolt.hpp"
+#include "headers/bolt.hpp"
 #include <iostream>
 #include <QtGui>
 #include <QApplication>

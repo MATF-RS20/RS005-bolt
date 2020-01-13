@@ -1,4 +1,4 @@
-#include "igrica2.hpp"
+#include "headers/igrica2.hpp"
 #include "ui_igrica2.h"
 
 Igrica2::Igrica2(QWidget *parent) :

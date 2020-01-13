@@ -1,6 +1,6 @@
-#include "igrica1.hpp"
+#include "headers/igrica1.hpp"
 #include "ui_igrica1.h"
-#include "lopta.hpp"
+#include "headers/lopta.hpp"
 #include "common/headers/invadertank.h"
 
 #include <QTimer>

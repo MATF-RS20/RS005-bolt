@@ -1,4 +1,4 @@
-#include "lopta.hpp"
+#include "headers/lopta.hpp"
 
 #include <QDebug>
 

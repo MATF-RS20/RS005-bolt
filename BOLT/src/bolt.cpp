@@ -1,4 +1,4 @@
-#include "bolt.hpp"
+#include "headers/bolt.hpp"
 #include "ui_bolt.h"
 
 #include <QGraphicsView>

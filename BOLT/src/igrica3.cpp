@@ -1,4 +1,4 @@
-#include "igrica3.hpp"
+#include "headers/igrica3.hpp"
 #include "ui_igrica3.h"
 
 Igrica3::Igrica3(QWidget *parent) :

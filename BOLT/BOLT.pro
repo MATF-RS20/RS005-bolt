@@ -18,31 +18,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lglut -lGLU
 
 SOURCES += \
-    igrica1.cpp \
-    igrica2.cpp \
-    igrica3.cpp \
-    lopta.cpp \
-    main.cpp \
-    bolt.cpp \
+    src/igrica1.cpp \
+    src/igrica2.cpp \
+    src/igrica3.cpp \
+    src/lopta.cpp \
+    src/main.cpp \
+    src/bolt.cpp \
     common/src/tank.cpp \
     common/src/projectile.cpp \
     common/src/invadertank.cpp
 
 HEADERS += \
-    bolt.hpp \
-    igrica1.hpp \
-    igrica2.hpp \
-    igrica3.hpp \
-    lopta.hpp \
+    headers/bolt.hpp \
+    headers/igrica1.hpp \
+    headers/igrica2.hpp \
+    headers/igrica3.hpp \
+    headers/lopta.hpp \
     common/headers/tank.h \
     common/headers/projectile.h \
     common/headers/invadertank.h
 
 FORMS += \
-    bolt.ui \
-    igrica1.ui \
-    igrica2.ui \
-    igrica3.ui
+    forms/bolt.ui \
+    forms/igrica1.ui \
+    forms/igrica2.ui \
+    forms/igrica3.ui
 
 RESOURCES += \
     bolt.qrc
