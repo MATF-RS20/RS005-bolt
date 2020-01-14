@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lglut -lGLU
 
 SOURCES += \
+    src/boltprojectile.cpp \
     src/bolttank.cpp \
     src/igrica1.cpp \
     src/igrica2.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     src/objekat.cpp
 
 HEADERS += \
+    headers/boltprojectile.hpp \
     headers/bolttank.hpp \
     headers/bolt.hpp \
     headers/igrica1.hpp \

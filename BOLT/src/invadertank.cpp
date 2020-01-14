@@ -1,6 +1,7 @@
 #include "headers/invadertank.h"
 #include "headers/projectile.h"
 #include <QGraphicsScene>
+
 InvaderTank::InvaderTank()
 {
 }

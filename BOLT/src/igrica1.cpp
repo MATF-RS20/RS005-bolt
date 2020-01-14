@@ -2,6 +2,7 @@
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
+#include "headers/invadertank.h"
 
 #include <QTimer>
 #include <QDebug>
@@ -47,14 +48,16 @@ void Igrica1::pokreniIgricu()
     // Postavljamo sliku za pozadinu
     setStyleSheet("background-image: url(:/images/g1.jpg);");
 
-    Objekat *objLopta = new Objekat(60, 1);
+    Objekat *objLopta = new Objekat(60);
     scene->addItem(objLopta);
 
     BoltTank *tank = new BoltTank();
     tank->setPos(400,530);
+    tank->setFlag(QGraphicsItem::ItemIsFocusable);
     scene->addItem(tank);
+    tank->setFocus();
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(1000/150);  //postavljamo na 150 fps
+    timer->start(1000/100);  //postavljamo na 100 fps
 }

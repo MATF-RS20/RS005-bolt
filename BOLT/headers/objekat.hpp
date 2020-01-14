@@ -10,7 +10,7 @@ class Objekat : public QGraphicsItem
 public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
-    Objekat(int radius, int igrica);
+    Objekat(int radius);
 
     int getRadius();
 
@@ -26,8 +26,6 @@ protected:
 
 private:
     int _radius;
-    int _igrica;     // Vrednost: 1,2,3. Podatak koji nam ukazuje na to koja je igrica trenutno pokrenuta
-
     /*Smerovi u kojima se lopta krece*/
     int _directionX;
     int _directionY;

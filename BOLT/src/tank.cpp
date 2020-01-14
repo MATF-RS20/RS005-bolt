@@ -4,48 +4,29 @@
 #include <QKeyEvent>
 
 
-Tank::Tank(int life,int movementSpeed, int tankWidth, int tankHeigth)
-    :_life(life),_movementSpeed(movementSpeed),
-      _tankWidth(tankWidth), _tankHeigth(tankHeigth)
+Tank::Tank(int life,int movementSpeed)
+    :_life(life),_movementSpeed(movementSpeed)
 {}
 
 QRectF Tank::boundingRect() const
 {
-
-    //return QRectF(-50, -50, _tankWidth, _tankHeigth);
-    return QRectF(0, 0, _tankWidth, _tankHeigth);
+    return QRectF(-50, -50, 100, 75);
 }
 
 QPainterPath Tank::shape() const
 {
     QPainterPath path;
-
-    path.addRect(0, 0, _tankWidth, _tankHeigth);
-
-    //path.addRect(-50, -50, _tankWidth, _tankHeigth);
-
+    path.addRect(-50, -50,100,75);
     return path;
 }
 
-void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
 
-//    painter->setBrush(Qt::green);
-//    painter->drawRect(boundingRect());
-//    painter->setBrush(Qt::blue);
-//    painter->drawPath(shape());
-
-    // DUSICA - tenk
-
-    painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/top.png"));
-
-
-    // JOVANA - tenk
-
-     // QColor red(200,0,50);
-     // painter->setBrush(red);
-    //  painter->drawRect(-50, -50,100,50);
+    QColor red(200,0,50);
+    painter->setBrush(red);
+    painter->drawRect(-50, -50,100,50);
 }
 
 void Tank::keyPressEvent(QKeyEvent * event){

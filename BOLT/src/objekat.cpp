@@ -2,8 +2,8 @@
 
 #include <QDebug>
 
-Objekat::Objekat(int radius, int igrica)
-    : _radius(radius), _igrica(igrica),
+Objekat::Objekat(int radius)
+    : _radius(radius),
       _directionX(5), _directionY(5)
 {
     setPos(450,100);
@@ -38,24 +38,15 @@ void Objekat::advance(int step)
     if (!step)
         return;
     //Razdvajam definisanje kretanja loptice u zavisnosti od izbora igrice
-    if (_igrica == 1) {
-        //DUSICA
-        moveBy(_directionX/2,_directionY/3);
-        if(x() <= 0+_radius || x() >= 900-_radius){
-            _directionX = -_directionX;
-        }
-        if(y() <= 0+_radius || y() >= 600-_radius){
-            _directionY = -_directionY;
-        }
+
+    moveBy(_directionX/2,_directionY/3);
+    if(x() <= 0+_radius || x() >= 900-_radius){
+        _directionX = -_directionX;
+    }
+    if(y() <= 0+_radius || y() >= 600-_radius){
+        _directionY = -_directionY;
     }
 
-    else if (_igrica == 2) {
-        // NEVENA
-    }
-
-    else if (_igrica == 3) {
-        // JOVANA
-    }
 }
 
 int Objekat::getRadius()

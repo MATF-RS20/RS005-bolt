@@ -5,5 +5,6 @@
         <file>images/slb1.jpg</file>
         <file>images/tenk.png</file>
         <file>images/top.png</file>
+        <file>images/bolt.png</file>
     </qresource>
 </RCC>
