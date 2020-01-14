@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lglut -lGLU
 
 SOURCES += \
+    src/bolttank.cpp \
     src/igrica1.cpp \
     src/igrica2.cpp \
     src/igrica3.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     src/objekat.cpp
 
 HEADERS += \
+    headers/bolttank.hpp \
     headers/bolt.hpp \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
@@ -52,5 +54,4 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    images/tenk.png
+DISTFILES +=

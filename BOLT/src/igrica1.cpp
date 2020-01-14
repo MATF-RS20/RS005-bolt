@@ -1,7 +1,7 @@
 #include "headers/igrica1.hpp"
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
-#include "headers/tank.h"
+#include "headers/bolttank.hpp"
 
 #include <QTimer>
 #include <QDebug>
@@ -50,7 +50,8 @@ void Igrica1::pokreniIgricu()
     Objekat *objLopta = new Objekat(60, 1);
     scene->addItem(objLopta);
 
-    Tank *tank = new Tank(3, 10, 1, 70, 150);
+    BoltTank *tank = new BoltTank();
+    tank->setPos(400,530);
     scene->addItem(tank);
 
     QTimer *timer = new QTimer(this);

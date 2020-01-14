@@ -4,29 +4,25 @@
 #include <QKeyEvent>
 
 
-Tank::Tank(int life,int movementSpeed, int igrica, int tankWidth, int tankHeigth)
-    :_life(life),_movementSpeed(movementSpeed), _igrica(igrica),
+Tank::Tank(int life,int movementSpeed, int tankWidth, int tankHeigth)
+    :_life(life),_movementSpeed(movementSpeed),
       _tankWidth(tankWidth), _tankHeigth(tankHeigth)
-{
-    setPos(400, 450);
-}
+{}
 
 QRectF Tank::boundingRect() const
 {
-    if(_igrica == 3){
-        return QRectF(-50, -50, _tankWidth, _tankHeigth);
-    }
+
+    //return QRectF(-50, -50, _tankWidth, _tankHeigth);
     return QRectF(0, 0, _tankWidth, _tankHeigth);
 }
 
 QPainterPath Tank::shape() const
 {
     QPainterPath path;
-    if(_igrica == 1){
-         path.addRect(0, 0, _tankWidth, _tankHeigth);
-    }else if(_igrica == 3){
-         path.addRect(-50, -50, _tankWidth, _tankHeigth);
-    }
+
+    path.addRect(0, 0, _tankWidth, _tankHeigth);
+
+    //path.addRect(-50, -50, _tankWidth, _tankHeigth);
 
     return path;
 }
@@ -41,27 +37,18 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 //    painter->drawPath(shape());
 
     // DUSICA - tenk
-    if (_igrica == 1) {
-        painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/tenk.png"));
-    }
 
-    // NEVENA - tenk
-    else if (_igrica == 2) {
+    painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/top.png"));
 
-    }
 
     // JOVANA - tenk
-    else {
-        QColor red(200,0,50);
-        painter->setBrush(red);
-        painter->drawRect(-50, -50,100,50);
-    }
+
+     // QColor red(200,0,50);
+     // painter->setBrush(red);
+    //  painter->drawRect(-50, -50,100,50);
 }
 
 void Tank::keyPressEvent(QKeyEvent * event){
-
-//    if (event->key() == Qt::Key_Left)
-//        moveBy(20, 20);
 
     if (event->key() == Qt::Key_Left and x()-_movementSpeed>-250){
         setPos(x()-_movementSpeed,y());
@@ -72,7 +59,7 @@ void Tank::keyPressEvent(QKeyEvent * event){
         fire();
     }
     event->setAccepted(true);
-//   update();
+ //   update();
 }
 
 void Tank::advance(int step)
@@ -85,11 +72,3 @@ void Tank::advance(int step)
         this->setFocus();
     }
 }
-
-void Tank::fire()
-{
-    Projectile *t = new Projectile();
-    t->setPos(x(),y()-37.5);
-    // TODO
-}
-
