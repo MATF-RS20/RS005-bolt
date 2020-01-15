@@ -24,5 +24,4 @@ void BoltProjectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     Q_UNUSED(option)
 
     painter->drawPixmap(_pocX, _pocY, _boltWidth, _boltHeight, QPixmap(":/images/b2.png"));
-//    painter->drawRect(_pocX,_pocY,_boltWidth,_boltHeight);
 }

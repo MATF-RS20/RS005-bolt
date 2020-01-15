@@ -4,7 +4,6 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QKeyEvent>
-#include <QDebug>
 
 BoltTank::BoltTank()
     :_tankWidth(80), _tankHeigth(130), _movementSpeed(5),_life(800)
@@ -35,9 +34,7 @@ void BoltTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
         painter->setBrush(Qt::blue);
         painter->drawPath(shape());
-        qDebug()<<_life;
         _life--;
-        qDebug()<< _life;
     }
 
     //Crtanje topa
