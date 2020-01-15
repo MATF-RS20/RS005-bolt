@@ -1,6 +1,6 @@
 #ifndef LOPTA_HPP
 #define LOPTA_HPP
-
+#include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QKeyEvent>
@@ -11,7 +11,7 @@ public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
     Objekat(int radius);
-
+    ~Objekat() override;
     int getRadius();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

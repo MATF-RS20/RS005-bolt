@@ -2,9 +2,9 @@
 #include <QPainter>
 
 BoltProjectile::BoltProjectile()
-    : _pocX(-10), _pocY(-30), _boltWidth(20), _boltHeight(60)
+    : _pocX(-5), _pocY(-18), _boltWidth(10), _boltHeight(36)
 {
-
+    setZValue(1);
 }
 
 QRectF BoltProjectile::boundingRect() const
@@ -23,6 +23,6 @@ void BoltProjectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 {
     Q_UNUSED(option)
 
-    painter->drawPixmap(_pocX, _pocY, _boltWidth, _boltHeight, QPixmap(":/images/bolt.png"));
+    painter->drawPixmap(_pocX, _pocY, _boltWidth, _boltHeight, QPixmap(":/images/b2.png"));
 //    painter->drawRect(_pocX,_pocY,_boltWidth,_boltHeight);
 }

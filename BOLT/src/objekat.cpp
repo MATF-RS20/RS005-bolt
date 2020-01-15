@@ -10,15 +10,27 @@ Objekat::Objekat(int radius)
     setZValue(1);
 }
 
+Objekat::~Objekat()
+{
+}
+
 void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
-    painter->setBrush(Qt::red);
-    if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
-        painter->setBrush(Qt::yellow);
+
+    if(_radius>10){
+        painter->setBrush(Qt::red);
+        if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
+            //delete this;
+            painter->setBrush(Qt::yellow);
+            //_radius -= 10;
+            //Objekat *lopta = new Objekat(_radius-10);
+            //lopta->setPos(x(),y());
+            //this->scene()->addItem(lopta);
+        }
+        painter->drawEllipse(QPoint(0, 0), _radius, _radius);
     }
-    painter->drawEllipse(QPoint(0, 0), _radius, _radius);
 }
 
 QRectF Objekat::boundingRect() const

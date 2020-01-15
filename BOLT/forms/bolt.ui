@@ -164,7 +164,7 @@
     border: 2px solid rgb(114, 159, 207);
     border-radius: 4px;
     padding: 2px;
-    background-image: url(:/images/slb1.jpg);
+    background-image: url(:/images/sl1.png);
 }</string>
         </property>
         <property name="frameShape">

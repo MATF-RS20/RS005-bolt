@@ -24,6 +24,7 @@ private:
     int _tankWidth;
     int _tankHeigth;
     int _movementSpeed;
+    int _life;
 
 };
 
