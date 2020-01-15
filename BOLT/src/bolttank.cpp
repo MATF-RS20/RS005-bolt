@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QKeyEvent>
-#include "boltprojectile.hpp"
+#include "headers/boltprojectile.hpp"
 
 BoltTank::BoltTank()
     :_tankWidth(120), _tankHeigth(70), _movementSpeed(10)
