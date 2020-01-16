@@ -22,8 +22,8 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     if(_radius>10){
         painter->setBrush(Qt::red);
         if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
-            delete this;
-            //painter->setBrush(Qt::yellow);
+            //delete this;
+            painter->setBrush(Qt::yellow);
             //_radius -= 10;
             //Objekat *lopta = new Objekat(_radius-10);
             //lopta->setPos(x(),y());

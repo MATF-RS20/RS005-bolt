@@ -6,7 +6,7 @@
 #include <QKeyEvent>
 
 BoltTank::BoltTank()
-    :_tankWidth(80), _tankHeigth(130), _movementSpeed(5),_life(800)
+    :_tankWidth(80), _tankHeigth(130), _movementSpeed(5),_life(400)
 {
     setZValue(2);
 }
@@ -30,6 +30,9 @@ void BoltTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
     if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
         _life--;
+        if(_life<=0){
+            //Game Over
+        }
     }
 
     //Crtanje topa

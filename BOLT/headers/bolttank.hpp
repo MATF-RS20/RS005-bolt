@@ -1,7 +1,7 @@
 #ifndef BOLTTANK_HPP
 #define BOLTTANK_HPP
 
-#include "tank.h"
+#include "headers/tank.h"
 
 class BoltTank: public Tank
 {
@@ -25,7 +25,6 @@ private:
     int _tankHeigth;
     int _movementSpeed;
     int _life;
-
 };
 
 #endif // BOLTTANK_HPP

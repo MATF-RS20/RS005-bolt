@@ -31,9 +31,6 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3"/>
-    </item>
-    <item>
      <spacer name="horizontalSpacer_4">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -86,12 +83,19 @@
        </spacer>
       </item>
       <item>
-       <widget class="QFrame" name="frame_3">
+       <widget class="QFrame" name="frame_Igrica2">
         <property name="minimumSize">
          <size>
           <width>210</width>
           <height>140</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QFrame {
+    border: 2px solid rgb(114, 159, 207);
+    border-radius: 4px;
+    padding: 2px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -146,7 +150,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QFrame" name="frameIgrica1">
+       <widget class="QFrame" name="frame_Igrica1">
         <property name="minimumSize">
          <size>
           <width>210</width>
@@ -164,7 +168,7 @@
     border: 2px solid rgb(114, 159, 207);
     border-radius: 4px;
     padding: 2px;
-    background-image: url(:/images/sl1.png);
+    background-image: url(:/images/lp.png);
 }</string>
         </property>
         <property name="frameShape">
@@ -226,7 +230,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QFrame" name="frame_2">
+       <widget class="QFrame" name="frame_Igrica3">
         <property name="minimumSize">
          <size>
           <width>210</width>
@@ -238,6 +242,13 @@
           <width>16777215</width>
           <height>140</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QFrame {
+    border: 2px solid rgb(114, 159, 207);
+    border-radius: 4px;
+    padding: 2px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>

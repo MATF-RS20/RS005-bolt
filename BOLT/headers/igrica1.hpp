@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPainter>
+//#include "headers/gameover.hpp"
 
 namespace Ui {
 class Igrica1;
@@ -24,6 +25,7 @@ private:
 
     int _windowWidth;
     int _windowHeight;
+//    GameOver *_gameOver_ui;
 
     void pokreniIgricu();
 };
