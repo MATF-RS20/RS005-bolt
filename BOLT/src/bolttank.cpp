@@ -28,12 +28,7 @@ void BoltTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     Q_UNUSED(option)
 
-//    painter->setBrush(Qt::green);
-//    painter->drawRect(boundingRect());
-
     if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
-        painter->setBrush(Qt::blue);
-        painter->drawPath(shape());
         _life--;
     }
 
