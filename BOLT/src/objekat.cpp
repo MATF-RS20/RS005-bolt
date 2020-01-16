@@ -1,6 +1,9 @@
 #include "headers/objekat.hpp"
+#include "headers/boltprojectile.hpp"
+#include "headers/bolttank.hpp"
 
 #include <QDebug>
+#include <QList>
 
 Objekat::Objekat(int radius)
     : _radius(radius),
@@ -21,13 +24,32 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     if(_radius>10){
         painter->setBrush(Qt::red);
-        if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
+        QList<QGraphicsItem*> collidedItems = collidingItems(Qt::IntersectsItemShape);
+
+        if (!collidedItems.isEmpty()) {
             //delete this;
-            painter->setBrush(Qt::yellow);
-            //_radius -= 10;
-            //Objekat *lopta = new Objekat(_radius-10);
-            //lopta->setPos(x(),y());
-            //this->scene()->addItem(lopta);
+            QGraphicsItem* item = collidedItems.first();
+            BoltTank *tank = dynamic_cast<BoltTank*>(item);
+            BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
+
+            if (projectile) {       // Sudar sa projektilom
+                qDebug() << "SALJEM SIGNAL";
+
+                // Projektil se sudario sa loptom, potrebno je poslati signal u Igrica1 da se obrise stara lopta i napravi nove
+                // Signalu treba proslediti koordinate lopte koji je unisten, da bi se lopte napravile iz te pozicije
+//                emit loptaPogodjena();
+                qDebug() << "SIGNAL PRIMLJEN";
+//                delete this;
+
+            }
+            else if (tank) {        // Sudar sa tenkom
+                tank->setLife(tank->getLife()-1);
+                if (tank->getLife() <= 0) {     // Kraj igre
+                    // TODO: posalji signal Igrici1 da se igra zavrsila i pozovi GameOver
+                }
+            } else {    // Lopte se medjusobno sudaraju - IGNORISATI
+
+            }
         }
         painter->drawEllipse(QPoint(0, 0), _radius, _radius);
     }
@@ -49,7 +71,6 @@ void Objekat::advance(int step)
 {
     if (!step)
         return;
-    //Razdvajam definisanje kretanja loptice u zavisnosti od izbora igrice
 
     moveBy(_directionX/2,_directionY/3);
     if(x() <= 0+_radius || x() >= 900-_radius){
@@ -75,4 +96,24 @@ void Objekat::keyPressEvent(QKeyEvent *event)
     }
 
     update();
+}
+
+int Objekat::getDirectionX()
+{
+    return _directionX;
+}
+
+int Objekat::getDirectionY()
+{
+    return _directionY;
+}
+
+void Objekat::setDirectionX(int x)
+{
+    _directionX = x;
+}
+
+void Objekat::setDirectionY(int y)
+{
+    _directionY = y;
 }

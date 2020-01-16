@@ -6,7 +6,7 @@
 #include <QKeyEvent>
 
 BoltTank::BoltTank()
-    :_tankWidth(80), _tankHeigth(130), _movementSpeed(5),_life(400)
+    :_tankWidth(80), _tankHeigth(130), _movementSpeed(7),_life(100)
 {
     setZValue(2);
 }
@@ -27,13 +27,6 @@ QPainterPath BoltTank::shape() const
 void BoltTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     Q_UNUSED(option)
-
-    if (!collidingItems(Qt::IntersectsItemShape).isEmpty()) {
-        _life--;
-        if(_life<=0){
-            //Game Over
-        }
-    }
 
     //Crtanje topa
     painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/tenk.png"));
@@ -57,4 +50,14 @@ void BoltTank::fire(){
     BoltProjectile* bolt=new BoltProjectile();
     bolt->setPos(x()+_tankWidth/2-2.5,y()+_tankHeigth);
     this->scene()->addItem(bolt);
+}
+
+int BoltTank::getLife()
+{
+    return _life;
+}
+
+void BoltTank::setLife(int life)
+{
+    _life = life;
 }

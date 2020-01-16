@@ -1,7 +1,7 @@
 #ifndef BOLTTANK_HPP
 #define BOLTTANK_HPP
 
-#include "headers/tank.h"
+#include "tank.h"
 
 class BoltTank: public Tank
 {
@@ -19,6 +19,9 @@ public:
     void keyPressEvent(QKeyEvent * event) override;
 
     void fire() override;
+
+    int getLife();
+    void setLife(int life);
 
 private:
     int _tankWidth;

@@ -44,4 +44,3 @@ void Projectile::advance(int step)
         delete this;
     }
 }
-

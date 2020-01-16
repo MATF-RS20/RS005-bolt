@@ -52,7 +52,6 @@ void Bolt::on_pushButton_2_clicked()
 }
 
 
-
 void Bolt::on_pushButton_3_clicked()
 {
     igrica3 = new Igrica3();

@@ -7,6 +7,7 @@
 
 class Objekat : public QGraphicsItem
 {
+
 public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
@@ -20,6 +21,15 @@ public:
     QPainterPath shape() const override;
 
     void keyPressEvent(QKeyEvent *event) override;
+
+    int getDirectionX();
+    int getDirectionY();
+    void setDirectionX(int x);
+    void setDirectionY(int y);
+
+signals:
+    void loptaPogodjena();
+    void tenkUnisten();
 
 protected:
     void advance(int step) override;

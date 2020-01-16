@@ -5,7 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPainter>
-//#include "headers/gameover.hpp"
+//#include "gameover.hpp"
 
 namespace Ui {
 class Igrica1;
@@ -18,6 +18,10 @@ class Igrica1 : public QWidget
 public:
     explicit Igrica1(QWidget *parent = nullptr);
     ~Igrica1();
+
+public slots:
+    void napraviNoveLopte();    // int x, int y
+    void zavrsiIgru();
 
 private:
     Ui::Igrica1 *ui;

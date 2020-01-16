@@ -2,9 +2,8 @@
 #define GAMEOVER_HPP
 
 #include <QWidget>
-#include <QGraphicsScene>
-#include <headers/bolt.hpp>
-#include <headers/igrica1.hpp>
+#include "headers/bolt.hpp"
+#include "headers/igrica1.hpp"
 
 namespace Ui {
 class GameOver;
@@ -26,13 +25,11 @@ private slots:
 
 private:
     Ui::GameOver *ui;
-    QGraphicsScene *scene;
     Bolt *_main_ui;
-    Igrica1 *_igrica1;
+//    Igrica1 *_igrica1;
 
     int _windowWidth;
     int _windowHeight;
-
 };
 
 #endif // GAMEOVER_HPP

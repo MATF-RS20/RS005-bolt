@@ -25,7 +25,7 @@ void GameOver::on_pushButton1_clicked()
 
 void GameOver::on_pushButton2_clicked()
 {
-    _igrica1 = new Igrica1();
-    hide();
-    _igrica1->show();
+//    _igrica1 = new Igrica1();
+//    hide();
+//    _igrica1->show();
 }
