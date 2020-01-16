@@ -31,10 +31,10 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Tank::keyPressEvent(QKeyEvent * event){
 
-    if (event->key() == Qt::Key_Left and x()-_movementSpeed>-250){
+    if (event->key() == Qt::Key_Left and x()-_movementSpeed>50){
         setPos(x()-_movementSpeed,y());
     }
-    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<250){
+    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<850){
         setPos(x()+_movementSpeed,y());
     }else if(event->key() == Qt::Key_Space){
         fire();

@@ -1,14 +1,16 @@
-#ifndef PROJECTILE_H
-#define PROJECTILE_H
+#ifndef INVADER_H
+#define INVADER_H
+
 
 #include <QGraphicsItem>
 
-class Projectile:public QGraphicsItem
+class invader:public QGraphicsItem
 {
 public:
-    Projectile();
+    invader();
 
     QRectF boundingRect() const override;
+
 
     QPainterPath shape() const override;
 
@@ -18,11 +20,6 @@ public:
 
 
     void advance(int step) override;
-
-
-private:
-    int _speed=7;
-
 };
 
-#endif // PROJECTILE_H
+#endif // INVADER_H

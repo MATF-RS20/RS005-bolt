@@ -23,6 +23,7 @@ SOURCES += \
     src/igrica1.cpp \
     src/igrica2.cpp \
     src/igrica3.cpp \
+    src/invader.cpp \
     src/main.cpp \
     src/bolt.cpp \
     src/tank.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
     headers/igrica3.hpp \
+    headers/invader.h \
     headers/tank.h \
     headers/projectile.h \
     headers/invadertank.h \

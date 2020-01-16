@@ -2,9 +2,13 @@
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
+
+
 #include "headers/invadertank.h"
 
 #include <QTimer>
+
+//
 #include <QDebug>
 
 Igrica1::Igrica1(QWidget *parent) :
