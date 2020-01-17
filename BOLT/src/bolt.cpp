@@ -11,7 +11,7 @@ Bolt::Bolt(QWidget *parent)
 
     ui->setupUi(this);
     setWindowTitle("BOLT");
-    resize(800, 400);
+    setFixedSize(800, 500);
     move(300, 150);
 
     instructions();
@@ -50,7 +50,6 @@ void Bolt::on_pushButton_2_clicked()
     hide();
     igrica2->show();
 }
-
 
 
 void Bolt::on_pushButton_3_clicked()
