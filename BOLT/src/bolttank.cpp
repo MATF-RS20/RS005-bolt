@@ -44,11 +44,11 @@ void BoltTank::keyPressEvent(QKeyEvent * event){
         fire();
     }
     event->setAccepted(true);
- //   update();
+
 }
 void BoltTank::fire(){
     BoltProjectile* bolt=new BoltProjectile();
-    bolt->setPos(x()+_tankWidth/2-2.5,y()+_tankHeigth);
+    bolt->setPos(x()+_tankWidth/2-4,y());
     this->scene()->addItem(bolt);
 }
 

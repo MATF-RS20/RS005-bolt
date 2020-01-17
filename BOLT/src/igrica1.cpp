@@ -68,24 +68,36 @@ void Igrica1::pokreniIgricu()
 
     //Postavljam tajmer da bih testirala kreiranje 2 lopte
     QTimer *timer2 = new QTimer(this);
-    connect(timer2, SIGNAL(timeout()), this, SLOT(napraviNoveLopte()));
-    timer2->start(5000);
+    qDebug()<<objLopta->getX()<< " , "<<objLopta->getY();
+    connect(timer2, SIGNAL(timeout()), this, SLOT(napraviNoveLopte(objLopta->getX(), objLopta->getY())));
+    timer2->start(1000);
     // FALI dva: connect() sa    napraviNoveLopte() i zavrsiIgru()
 }
 
 
-void Igrica1::napraviNoveLopte()
+void Igrica1::napraviNoveLopte(int x, int y)
 {
+    qDebug()<<x<< " ,,, "<<y;
     //Lopte trenutno crtam na proizvoljnoj lokaciji finalno ce to biti koordinate lopte koja je unistena
     Objekat* lopta1 = new Objekat(40);
-    lopta1->setPos(100, 100);
+    lopta1->setPos(x, y);
     Objekat* lopta2 = new Objekat(40);
 
     lopta2->setDirectionX(-lopta2->getDirectionX());
-    lopta2->setPos(100, 100);
+    lopta2->setPos(x, y);
 
     scene->addItem(lopta1);
     scene->addItem(lopta2);
+
+    Objekat* lopta11 = new Objekat(40);
+    lopta11->setPos(300, 300);
+    Objekat* lopta22 = new Objekat(40);
+
+    lopta22->setDirectionX(-lopta22->getDirectionX());
+    lopta22->setPos(300, 300);
+
+    scene->addItem(lopta11);
+    scene->addItem(lopta22);
 
 //Da bismo imali sledeci nivo razbijanja moramo povezati preko signala i slotova
 
@@ -97,6 +109,6 @@ void Igrica1::zavrsiIgru()
 {
     qDebug() << "zavrsiIgru()";
     //_gameOver_ui = new GameOver();
-    //hide();
+    close();
     //_gameOver_ui->show();
 }
