@@ -1,14 +1,14 @@
 #include "headers/bolttank.hpp"
-#include "headers/projectile.h"
+#include "headers/boltprojectile.hpp"
+
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QKeyEvent>
-#include "headers/boltprojectile.hpp"
 
 BoltTank::BoltTank()
-    :_tankWidth(120), _tankHeigth(70), _movementSpeed(10)
+    :_tankWidth(80), _tankHeigth(130), _movementSpeed(7),_life(100)
 {
-
+    setZValue(2);
 }
 QRectF BoltTank::boundingRect() const
 {
@@ -28,22 +28,17 @@ void BoltTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     Q_UNUSED(option)
 
-//    painter->setBrush(Qt::green);
-//    painter->drawRect(boundingRect());
-//    painter->setBrush(Qt::blue);
-//    painter->drawPath(shape());
-
     //Crtanje topa
-    painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/top.png"));
+    painter->drawPixmap(0, 0, _tankWidth, _tankHeigth, QPixmap(":/images/tenk.png"));
 
 
 }
 void BoltTank::keyPressEvent(QKeyEvent * event){
 
-    if (event->key() == Qt::Key_Left and x()-_movementSpeed>-5){
+    if (event->key() == Qt::Key_Left and x()-_movementSpeed>-10){
         setPos(x()-_movementSpeed,y());
     }
-    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<790){
+    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<840){
         setPos(x()+_movementSpeed,y());
     }else if(event->key() == Qt::Key_Space){
         fire();
@@ -53,6 +48,16 @@ void BoltTank::keyPressEvent(QKeyEvent * event){
 }
 void BoltTank::fire(){
     BoltProjectile* bolt=new BoltProjectile();
-    bolt->setPos(x()+_tankWidth/2,y()+_tankHeigth);
+    bolt->setPos(x()+_tankWidth/2-2.5,y()+_tankHeigth);
     this->scene()->addItem(bolt);
+}
+
+int BoltTank::getLife()
+{
+    return _life;
+}
+
+void BoltTank::setLife(int life)
+{
+    _life = life;
 }

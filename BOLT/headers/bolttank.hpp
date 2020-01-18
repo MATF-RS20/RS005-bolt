@@ -20,11 +20,14 @@ public:
 
     void fire() override;
 
+    int getLife();
+    void setLife(int life);
+
 private:
     int _tankWidth;
     int _tankHeigth;
     int _movementSpeed;
-
+    int _life;
 };
 
 #endif // BOLTTANK_HPP

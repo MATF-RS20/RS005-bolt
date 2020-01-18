@@ -1,7 +1,7 @@
 #ifndef INVADERTANK_H
 #define INVADERTANK_H
 
-#include "tank.h"
+#include "headers/tank.h"
 
 class InvaderTank:public Tank
 {

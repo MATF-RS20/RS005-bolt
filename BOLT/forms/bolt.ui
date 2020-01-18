@@ -31,9 +31,6 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3"/>
-    </item>
-    <item>
      <spacer name="horizontalSpacer_4">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -86,7 +83,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QFrame" name="frame_3">
+       <widget class="QFrame" name="frame_Igrica2">
         <property name="minimumSize">
          <size>
           <width>210</width>
@@ -94,7 +91,11 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QFrame {
+    border: 2px solid rgb(114, 159, 207);
+    border-radius: 4px;
+    padding: 2px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -149,7 +150,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QFrame" name="frameIgrica1">
+       <widget class="QFrame" name="frame_Igrica1">
         <property name="minimumSize">
          <size>
           <width>210</width>
@@ -167,7 +168,7 @@
     border: 2px solid rgb(114, 159, 207);
     border-radius: 4px;
     padding: 2px;
-    background-image: url(:/images/slb1.jpg);
+    background-image: url(:/images/lp.png);
 }</string>
         </property>
         <property name="frameShape">
@@ -229,7 +230,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QFrame" name="frame_2">
+       <widget class="QFrame" name="frame_Igrica3">
         <property name="minimumSize">
          <size>
           <width>210</width>
@@ -247,7 +248,10 @@
     border: 2px solid rgb(114, 159, 207);
     border-radius: 4px;
     padding: 2px;
+<<<<<<< HEAD
     background-image: url(:/images/mushrooms.jpg);
+=======
+>>>>>>> 6af0c53f9521eb6772d8ab53899b37a2c4e391a8
 }</string>
         </property>
         <property name="frameShape">

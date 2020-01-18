@@ -2,7 +2,6 @@
 #define BOLT_H
 
 #include <QMainWindow>
-#include <QGraphicsScene>
 #include <QtGui>
 #include <QGraphicsView>
 #include <QGraphicsScene>

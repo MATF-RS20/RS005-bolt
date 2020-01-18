@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lglut -lGLU
 
 SOURCES += \
+    src/gameover.cpp \
     src/boltprojectile.cpp \
     src/bolttank.cpp \
     src/igrica1.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     src/objekat.cpp
 
 HEADERS += \
+    headers/gameover.hpp \
     headers/boltprojectile.hpp \
     headers/bolttank.hpp \
     headers/bolt.hpp \
@@ -48,7 +50,8 @@ FORMS += \
     forms/bolt.ui \
     forms/igrica1.ui \
     forms/igrica2.ui \
-    forms/igrica3.ui
+    forms/igrica3.ui \
+    forms/gameover.ui
 
 RESOURCES += \
     bolt.qrc
@@ -58,4 +61,5 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    images/sl1.png

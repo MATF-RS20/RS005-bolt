@@ -2,10 +2,15 @@
     <qresource prefix="/">
         <file>images/g1.jpg</file>
         <file>images/Game_Background.png</file>
-        <file>images/slb1.jpg</file>
         <file>images/tenk.png</file>
         <file>images/top.png</file>
         <file>images/bolt.png</file>
         <file>images/mushrooms.jpg</file>
+        <file>images/pozadina.png</file>
+        <file>images/b2.png</file>
+        <file>images/sl1.png</file>
+        <file>images/lp.png</file>
+        <file>images/game_over.png</file>
+        <file>images/you_win.png</file>
     </qresource>
 </RCC>
