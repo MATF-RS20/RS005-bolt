@@ -6,54 +6,58 @@
 #include <QList>
 
 Objekat::Objekat(int radius)
-    : _radius(radius),
-      _directionX(5), _directionY(5)
+    : _radius(radius), _directionX(5), _directionY(5)
 {
+    brojLopti++;
     setPos(450,100);
     setZValue(1);
 }
 
 Objekat::~Objekat()
 {
+    brojLopti--;
 }
+
+int Objekat::brojLopti = 0;
 
 void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
-    if(_radius>10){
-        painter->setBrush(Qt::red);
-        QList<QGraphicsItem*> collidedItems = collidingItems(Qt::IntersectsItemShape);
-
-        if (!collidedItems.isEmpty()) {
-            //delete this;
-            QGraphicsItem* item = collidedItems.first();
-            BoltTank *tank = dynamic_cast<BoltTank*>(item);
-            BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
-
-            if (projectile) {       // Sudar sa projektilom
-                //qDebug() << "SALJEM SIGNAL";
-
-                // Projektil se sudario sa loptom, potrebno je poslati signal u Igrica1 da se obrise stara lopta i napravi nove
-                // Signalu treba proslediti koordinate lopte koji je unisten, da bi se lopte napravile iz te pozicije
-//                emit loptaPogodjena();
-                //qDebug() << "SIGNAL PRIMLJEN";
-//                delete this;
-
-            }
-            else if (tank) {        // Sudar sa tenkom
-                tank->setLife(tank->getLife()-1);
-                if (tank->getLife() <= 0) {     // Kraj igre
-                    // TODO: posalji signal Igrici1 da se igra zavrsila i pozovi GameOver
-                }
-            } else {
-                // Lopte se medjusobno sudaraju - IGNORISATI
-            }
-        }
-        painter->drawEllipse(QPoint(0, 0), _radius, _radius);
+    if(_radius<10){
+        delete this; //Loptica je premalena pa je ne crtamo
     }
+
+    painter->setBrush(Qt::red);
+    //TODO: razlicite boje loptice za razlicite nivoe
+
+    QList<QGraphicsItem*> collidedItems = collidingItems(Qt::IntersectsItemShape);
+
+    if (!collidedItems.isEmpty()) {
+
+        QGraphicsItem* item = collidedItems.first();
+        BoltTank *tank = dynamic_cast<BoltTank*>(item);
+        BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
+
+        if (projectile) {       // Sudar lopte sa projektilom
+            emit loptaPogodjena(this->x(),this->y(),this->getRadius());
+            delete this;
+        }
+        else if (tank) {        // Sudar lopte sa tenkom
+            tank->setLife(tank->getLife()-1);
+            qDebug()<< tank->getLife();
+            if (tank->getLife() <= 0) {     // Kraj igre
+                // posalji signal Igrici1 da se igra zavrsila i pozovi GameOver
+                emit krajIgre(true);
+            }
+        } else {
+            // Lopte se medjusobno sudaraju - IGNORISATI
+        }
+    }
+    painter->drawEllipse(QPoint(0, 0), _radius, _radius);
 }
+
 
 QRectF Objekat::boundingRect() const
 {
@@ -117,14 +121,3 @@ void Objekat::setDirectionY(int y)
 {
     _directionY = y;
 }
-
-int Objekat::getX()
-{
-    return static_cast<int>(x());
-}
-
-int Objekat::getY()
-{
-    return static_cast<int>(y());
-}
-

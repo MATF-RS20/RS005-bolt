@@ -2,7 +2,7 @@
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
-
+#include "headers/gameover.hpp"
 
 #include <QMainWindow>
 #include <QTimer>
@@ -61,54 +61,58 @@ void Igrica1::pokreniIgricu()
     scene->addItem(tank);
     tank->setFocus();
 
+    //Povezujemo preko signala i slotova crtanje novih loptica i kraj igre
+    QObject::connect(objLopta,SIGNAL(loptaPogodjena(qreal,qreal,int)),
+                     this, SLOT(napraviNoveLopte(qreal,qreal,int)));
+
+    QObject::connect(objLopta,SIGNAL(krajIgre(bool)), this, SLOT(zavrsiIgru(bool)));
+
     //Postavljam tajmer za kretanje lopte
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(1000/100);  //postavljamo na 100 fps
 
-    //Postavljam tajmer da bih testirala kreiranje 2 lopte
-    QTimer *timer2 = new QTimer(this);
-    qDebug()<<objLopta->getX()<< " , "<<objLopta->getY();
-    connect(timer2, SIGNAL(timeout()), this, SLOT(napraviNoveLopte(objLopta->getX(), objLopta->getY())));
-    timer2->start(1000);
-    // FALI dva: connect() sa    napraviNoveLopte() i zavrsiIgru()
 }
 
 
-void Igrica1::napraviNoveLopte(int x, int y)
+void Igrica1::napraviNoveLopte(qreal x, qreal y, int r)
 {
-    qDebug()<<x<< " ,,, "<<y;
-    //Lopte trenutno crtam na proizvoljnoj lokaciji finalno ce to biti koordinate lopte koja je unistena
-    Objekat* lopta1 = new Objekat(40);
-    lopta1->setPos(x, y);
-    Objekat* lopta2 = new Objekat(40);
+    int noviRadijus = r - 15;
 
+    //Lopte trenutno crtam na proizvoljnoj lokaciji finalno ce to biti koordinate lopte koja je unistena
+    Objekat* lopta1 = new Objekat(noviRadijus);
+    lopta1->setPos(x, y);
+
+    Objekat* lopta2 = new Objekat(noviRadijus);
     lopta2->setDirectionX(-lopta2->getDirectionX());
     lopta2->setPos(x, y);
 
     scene->addItem(lopta1);
     scene->addItem(lopta2);
 
-    Objekat* lopta11 = new Objekat(40);
-    lopta11->setPos(300, 300);
-    Objekat* lopta22 = new Objekat(40);
+    //Da bi i nove lopte imale sledeci nivo razbijanja
+    QObject::connect(lopta1,SIGNAL(loptaPogodjena(qreal,qreal,int)),
+                     this, SLOT(napraviNoveLopte(qreal,qreal,int)));
 
-    lopta22->setDirectionX(-lopta22->getDirectionX());
-    lopta22->setPos(300, 300);
+    QObject::connect(lopta2,SIGNAL(loptaPogodjena(qreal,qreal,int)),
+                     this, SLOT(napraviNoveLopte(qreal,qreal,int)));
 
-    scene->addItem(lopta11);
-    scene->addItem(lopta22);
-
-//Da bismo imali sledeci nivo razbijanja moramo povezati preko signala i slotova
-
-//    connect(lopta1, loptaPogodjena, this, napraviNoveLopte());
-//    connect(lopta2, loptaPogodjena, this, napraviNoveLopte());
+    //Da bi i nove lopte mogle da uniste tenk i zavrse igru i njih povezujemo
+    QObject::connect(lopta1,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
+    QObject::connect(lopta2,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
 }
 
-void Igrica1::zavrsiIgru()
+void Igrica1::zavrsiIgru(bool tenkUnisten)
 {
-    qDebug() << "zavrsiIgru()";
-    //_gameOver_ui = new GameOver();
+    GameOver *_gameOver_ui;
+    _gameOver_ui = new GameOver();
     close();
-    //_gameOver_ui->show();
+
+    if(tenkUnisten){
+        qDebug() << "zavrsiIgru()    igrica1";
+    }else{
+        qDebug()<<"Pobeda";
+        _gameOver_ui->setStyleSheet("background-image: url(:/images/you_win.png);");
+    }
+    _gameOver_ui->show();
 }

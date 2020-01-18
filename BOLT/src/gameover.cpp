@@ -18,6 +18,7 @@ GameOver::~GameOver()
 
 void GameOver::on_pushButton1_clicked()
 {
+    //ili da posaljem signal u Bolt i tamo samo prikazem sa show() jer je taj prozor jos ziv
     _main_ui = new Bolt();
     hide();
     _main_ui->show();
@@ -25,7 +26,7 @@ void GameOver::on_pushButton1_clicked()
 
 void GameOver::on_pushButton2_clicked()
 {
-//    _igrica1 = new Igrica1();
-//    hide();
-//    _igrica1->show();
+    _igrica1 = new Igrica1();
+    close();
+    _igrica1->show();
 }

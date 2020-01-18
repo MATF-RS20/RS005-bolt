@@ -22,6 +22,7 @@ QPainterPath BoltProjectile::shape() const
 void BoltProjectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
+    Q_UNUSED(widget)
 
     painter->drawPixmap(_pocX, _pocY, _boltWidth, _boltHeight, QPixmap(":/images/b2.png"));
 }

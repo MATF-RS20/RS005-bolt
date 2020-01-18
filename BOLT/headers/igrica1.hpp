@@ -6,8 +6,6 @@
 #include <QGraphicsView>
 #include <QPainter>
 
-//#include "gameover.hpp"
-
 namespace Ui {
 class Igrica1;
 }
@@ -21,8 +19,8 @@ public:
     ~Igrica1();
 
 public slots:
-    void napraviNoveLopte(int _x, int _y);    // int x, int y
-    void zavrsiIgru();
+    void napraviNoveLopte(qreal x, qreal y,int radijus);
+    void zavrsiIgru(bool tenkUnisten);
 
 private:
     Ui::Igrica1 *ui;
@@ -30,7 +28,6 @@ private:
 
     int _windowWidth;
     int _windowHeight;
-//    GameOver *_gameOver_ui;
 
     void pokreniIgricu();
 };
