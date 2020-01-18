@@ -15,7 +15,7 @@ Objekat::Objekat(int radius)
 
 Objekat::~Objekat()
 {
-    brojLopti--;
+    //brojLopti--;
 }
 
 int Objekat::brojLopti = 0;
@@ -29,8 +29,9 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         delete this; //Loptica je premalena pa je ne crtamo
     }
 
+    //Postavljamo boju lopte
     painter->setBrush(Qt::red);
-    //TODO: razlicite boje loptice za razlicite nivoe
+    //TODO: menjanje boja loptama prema nivou
 
     QList<QGraphicsItem*> collidedItems = collidingItems(Qt::IntersectsItemShape);
 
@@ -44,7 +45,12 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
             //Saljemo signal za pravljenje nove dve lopte jer je ova pogodjena
             emit loptaPogodjena(this->x(),this->y(),this->getRadius());
+            brojLopti--;
             delete this;
+            if(brojLopti == 0){
+                qDebug()<<"lopppte";
+                emit krajIgre(false);
+            }
         }
         else if (tank) {        // Sudar lopte sa tenkom
 

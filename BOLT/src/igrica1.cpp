@@ -2,13 +2,11 @@
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
-
-
+#include "headers/gameover.hpp"
 
 #include <QMainWindow>
 #include <QTimer>
 
-//
 #include <QDebug>
 
 Igrica1::Igrica1(QWidget *parent) :
@@ -80,7 +78,7 @@ void Igrica1::pokreniIgricu()
 
 void Igrica1::napraviNoveLopte(qreal x, qreal y, int r)
 {
-    int noviRadijus = r - 15;
+    int noviRadijus = r - 20  ;
 
     //Lopte trenutno crtam na proizvoljnoj lokaciji finalno ce to biti koordinate lopte koja je unistena
     Objekat* lopta1 = new Objekat(noviRadijus);
