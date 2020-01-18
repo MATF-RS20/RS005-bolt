@@ -41,12 +41,15 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
 
         if (projectile) {       // Sudar lopte sa projektilom
+
+            //Saljemo signal za pravljenje nove dve lopte jer je ova pogodjena
             emit loptaPogodjena(this->x(),this->y(),this->getRadius());
             delete this;
         }
         else if (tank) {        // Sudar lopte sa tenkom
+
             tank->setLife(tank->getLife()-1);
-            qDebug()<< tank->getLife();
+
             if (tank->getLife() <= 0) {     // Kraj igre
                 // posalji signal Igrici1 da se igra zavrsila i pozovi GameOver
                 emit krajIgre(true);

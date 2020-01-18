@@ -4,8 +4,11 @@
 #include "headers/bolttank.hpp"
 #include "headers/gameover.hpp"
 
+
 #include <QMainWindow>
 #include <QTimer>
+
+//
 #include <QDebug>
 
 Igrica1::Igrica1(QWidget *parent) :

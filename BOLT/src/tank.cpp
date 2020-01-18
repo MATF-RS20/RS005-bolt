@@ -2,11 +2,14 @@
 #include <iostream>
 #include <QPainter>
 #include <QKeyEvent>
-
+#include <QGraphicsScene>
+#include <QTimer>
 
 Tank::Tank(int life,int movementSpeed)
     :_life(life),_movementSpeed(movementSpeed)
-{}
+{
+
+}
 
 QRectF Tank::boundingRect() const
 {
@@ -31,13 +34,14 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Tank::keyPressEvent(QKeyEvent * event){
 
-    if (event->key() == Qt::Key_Left and x()-_movementSpeed>-250){
+    if (event->key() == Qt::Key_Left and x()-_movementSpeed>50){
         setPos(x()-_movementSpeed,y());
     }
-    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<250){
+    else if (event->key() == Qt::Key_Right and x()+_movementSpeed<850){
         setPos(x()+_movementSpeed,y());
-    }else if(event->key() == Qt::Key_Space){
-        fire();
+    }
+    if(event->key() == Qt::Key_Space){
+            fire();
     }
     event->setAccepted(true);
  //   update();
@@ -45,11 +49,13 @@ void Tank::keyPressEvent(QKeyEvent * event){
 
 void Tank::advance(int step)
 {
+
     if (!step) {
         return;
     }
-
-    if(!this->hasFocus()){
-        this->setFocus();
+    else{
+        if(!this->hasFocus()){
+           this->setFocus();
+        }
     }
 }
