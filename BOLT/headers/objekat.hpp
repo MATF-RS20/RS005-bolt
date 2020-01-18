@@ -26,6 +26,8 @@ public:
     int getDirectionY();
     void setDirectionX(int x);
     void setDirectionY(int y);
+    int getX();
+    int getY();
 
 signals:
     void loptaPogodjena();

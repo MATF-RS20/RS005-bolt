@@ -33,12 +33,12 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
             BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
 
             if (projectile) {       // Sudar sa projektilom
-                qDebug() << "SALJEM SIGNAL";
+                //qDebug() << "SALJEM SIGNAL";
 
                 // Projektil se sudario sa loptom, potrebno je poslati signal u Igrica1 da se obrise stara lopta i napravi nove
                 // Signalu treba proslediti koordinate lopte koji je unisten, da bi se lopte napravile iz te pozicije
 //                emit loptaPogodjena();
-                qDebug() << "SIGNAL PRIMLJEN";
+                //qDebug() << "SIGNAL PRIMLJEN";
 //                delete this;
 
             }
@@ -47,8 +47,8 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
                 if (tank->getLife() <= 0) {     // Kraj igre
                     // TODO: posalji signal Igrici1 da se igra zavrsila i pozovi GameOver
                 }
-            } else {    // Lopte se medjusobno sudaraju - IGNORISATI
-
+            } else {
+                // Lopte se medjusobno sudaraju - IGNORISATI
             }
         }
         painter->drawEllipse(QPoint(0, 0), _radius, _radius);
@@ -117,3 +117,14 @@ void Objekat::setDirectionY(int y)
 {
     _directionY = y;
 }
+
+int Objekat::getX()
+{
+    return static_cast<int>(x());
+}
+
+int Objekat::getY()
+{
+    return static_cast<int>(y());
+}
+

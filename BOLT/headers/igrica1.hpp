@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPainter>
+
 //#include "gameover.hpp"
 
 namespace Ui {
@@ -20,7 +21,7 @@ public:
     ~Igrica1();
 
 public slots:
-    void napraviNoveLopte();    // int x, int y
+    void napraviNoveLopte(int _x, int _y);    // int x, int y
     void zavrsiIgru();
 
 private:
