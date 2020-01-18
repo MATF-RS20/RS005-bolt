@@ -9,6 +9,7 @@ class InvaderTank:public Tank
 public:
     InvaderTank();
     void fire() override;
+    void advance(int step) override;
 };
 
 #endif // INVADERTANK_H

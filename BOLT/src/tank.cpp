@@ -51,17 +51,11 @@ void Tank::advance(int step)
 {
 
     if (!step) {
-        auto list = this->scene()->collidingItems(this);
-        if(!list.isEmpty()){
-          //  delete list[0];
-            delete this;
-        }
         return;
     }
     else{
-    if(!this->hasFocus()){
-        this->setFocus();
+        if(!this->hasFocus()){
+           this->setFocus();
+        }
     }
-    }
-
 }

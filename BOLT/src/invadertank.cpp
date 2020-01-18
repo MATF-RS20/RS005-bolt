@@ -12,3 +12,17 @@ void InvaderTank::fire(){
         this->scene()->addItem(t);
 }
 
+void InvaderTank::advance(int step)
+{
+
+    if (!step) {
+        auto list = this->scene()->collidingItems(this);
+        if(!list.isEmpty()){
+          //  delete list[0];
+            delete this;
+        }
+        return;
+    }
+
+
+}

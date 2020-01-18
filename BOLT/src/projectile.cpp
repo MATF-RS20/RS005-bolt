@@ -47,14 +47,20 @@ void Projectile::advance(int step)
             }
          return;
      }else{
-        if(y()>10){
-      //     auto a=y();
+        if(y()>20){
                setPos(x(),y()-_speed);
          }
         else{
-            delete this;
+            if(_isTenk)
+                 delete this;
         }
-
+        if(y()<560){
+               setPos(x(),y()-_speed);
+         }
+        else{
+            if(!_isTenk)
+                 delete this;
+        }
     }
 
 }
