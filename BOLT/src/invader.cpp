@@ -3,6 +3,8 @@
 #include <QKeyEvent>
 #include <QColor>
 #include "headers/invader.h"
+#include "headers/projectile.h"
+#include <QGraphicsScene>
 invader::invader()
 {
 
@@ -34,11 +36,27 @@ void invader::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 void invader::advance(int step)
 {
 
-    if (!step)
-    {
+    if (!step){
+        if(x()<850 && _sgn==1){
+            setPos(x()+2,y());
+        }else if(x()>=850){
+            setPos(x()-2,y()+50);
+            _sgn=0;
 
-        return;
+        }else if(x()>0 && _sgn==0){
+            setPos(x()-2,y());
+        }else if(_sgn==0 && x()<=0){
+            setPos(x()+2,y()+50);
+            _sgn=1;
+        }
+       if(qrand()%1000<1){
+            Projectile* p=new Projectile(false,-7);
+            p->setPos(x(),y());
+            scene()->addItem(p);
+        }
+       return;
     }
+
 
 
 }

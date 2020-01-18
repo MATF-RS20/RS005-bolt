@@ -2,11 +2,14 @@
 #include <iostream>
 #include <QPainter>
 #include <QKeyEvent>
-
+#include <QGraphicsScene>
+#include <QTimer>
 
 Tank::Tank(int life,int movementSpeed)
     :_life(life),_movementSpeed(movementSpeed)
-{}
+{
+
+}
 
 QRectF Tank::boundingRect() const
 {
@@ -36,8 +39,9 @@ void Tank::keyPressEvent(QKeyEvent * event){
     }
     else if (event->key() == Qt::Key_Right and x()+_movementSpeed<850){
         setPos(x()+_movementSpeed,y());
-    }else if(event->key() == Qt::Key_Space){
-        fire();
+    }
+    if(event->key() == Qt::Key_Space){
+            fire();
     }
     event->setAccepted(true);
  //   update();
@@ -45,11 +49,19 @@ void Tank::keyPressEvent(QKeyEvent * event){
 
 void Tank::advance(int step)
 {
+
     if (!step) {
+        auto list = this->scene()->collidingItems(this);
+        if(!list.isEmpty()){
+          //  delete list[0];
+            delete this;
+        }
         return;
     }
-
+    else{
     if(!this->hasFocus()){
         this->setFocus();
     }
+    }
+
 }

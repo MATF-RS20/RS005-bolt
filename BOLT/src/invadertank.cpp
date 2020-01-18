@@ -7,7 +7,8 @@ InvaderTank::InvaderTank()
 }
 
 void InvaderTank::fire(){
-    Projectile* t=new Projectile();
-    t->setPos(x(),y()-55.5);
-    this->scene()->addItem(t);
+        Projectile* t=new Projectile(true);
+        t->setPos(x(),y()-55.5);
+        this->scene()->addItem(t);
 }
+

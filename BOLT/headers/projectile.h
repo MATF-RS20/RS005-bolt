@@ -6,7 +6,7 @@
 class Projectile:public QGraphicsItem
 {
 public:
-    Projectile();
+    Projectile(bool isTank =true,int _speed=7);
 
     QRectF boundingRect() const override;
 
@@ -21,7 +21,9 @@ public:
 
 
 private:
-    int _speed=7;
+    int _speed;
+//    int _direction;
+    bool _isTenk;
 
 };
 

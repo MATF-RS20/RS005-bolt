@@ -20,6 +20,8 @@ public:
 
 
     void advance(int step) override;
+private:
+    int _sgn=1;
 };
 
 #endif // INVADER_H

@@ -93,6 +93,9 @@
           <height>140</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -238,6 +241,14 @@
           <width>16777215</width>
           <height>140</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QFrame {
+    border: 2px solid rgb(114, 159, 207);
+    border-radius: 4px;
+    padding: 2px;
+    background-image: url(:/images/mushrooms.jpg);
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>

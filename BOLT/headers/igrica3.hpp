@@ -19,11 +19,18 @@ public:
 private:
     Ui::Igrica1 *ui;
     QGraphicsScene *scene;
-
     int _windowWidth;
     int _windowHeight;
-
+    int _invaderSpeed;
+    int _invaderNumber;
     void pokreniIgricu();
+public slots:
+    void setValue();
+
+signals:
+    void valueChanged();
+
+
 };
 
 #endif // IGRICA3_HPP

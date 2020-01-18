@@ -5,9 +5,9 @@
 
 class InvaderTank:public Tank
 {
+
 public:
     InvaderTank();
-
     void fire() override;
 };
 
