@@ -2,7 +2,7 @@
 #include "ui_igrica1.h"
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
-#include "headers/gameover.hpp"
+
 
 
 #include <QMainWindow>
