@@ -9,6 +9,7 @@ class Objekat : public QObject,public QGraphicsItem
 {
     Q_OBJECT
 
+    static int brojLopti;
 public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
@@ -24,7 +25,7 @@ public:
 
     void keyPressEvent(QKeyEvent *event) override;
 
-    static int brojLopti;
+
 
     int getRadius();
     int getDirectionX();

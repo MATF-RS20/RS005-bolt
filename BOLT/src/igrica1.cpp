@@ -53,6 +53,7 @@ void Igrica1::pokreniIgricu()
 
     //Kreiram prvu Loptu
     Objekat *objLopta = new Objekat(60);
+    objLopta->setPos(450,100);   //TODO: random pozicija [x,100] ge je x iz (50,850)
     scene->addItem(objLopta);
 
     //Kreiram tenk
@@ -109,11 +110,10 @@ void Igrica1::zavrsiIgru(bool tenkUnisten)
     _gameOver_ui = new GameOver();
     close();
 
-    if(tenkUnisten){
-        qDebug() << "zavrsiIgru()    igrica1";
-    }else{
+    if(!tenkUnisten){
         qDebug()<<"Pobeda";
         _gameOver_ui->setStyleSheet("background-image: url(:/images/you_win.png);");
     }
+
     _gameOver_ui->show();
 }
