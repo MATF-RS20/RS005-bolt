@@ -15,7 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-LIBS += -lglut -lGLU
+#LIBS += -lglut -lGLU
 
 SOURCES += \
     src/gameover.cpp \
@@ -24,6 +24,7 @@ SOURCES += \
     src/igrica1.cpp \
     src/igrica2.cpp \
     src/igrica3.cpp \
+    src/invader.cpp \
     src/main.cpp \
     src/bolt.cpp \
     src/tank.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
     headers/igrica3.hpp \
+    headers/invader.h \
     headers/tank.h \
     headers/projectile.h \
     headers/invadertank.h \

@@ -1,16 +1,16 @@
-#ifndef TANK_H
-#define TANK_H
+#ifndef INVADER_H
+#define INVADER_H
+
 
 #include <QGraphicsItem>
-#include "headers/projectile.h"
 
-class Tank: public QGraphicsItem
+class invader:public QGraphicsItem
 {
 public:
-
-    Tank(int life=3,int movementSpeed=10);
+    invader();
 
     QRectF boundingRect() const override;
+
 
     QPainterPath shape() const override;
 
@@ -18,13 +18,10 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
-    void keyPressEvent(QKeyEvent * event) override;
-    void advance(int step) override;
-    void virtual fire() = 0;
-private:
-    int _life;
-    int _movementSpeed;
 
+    void advance(int step) override;
+private:
+    int _sgn=1;
 };
 
-#endif // TANK_H
+#endif // INVADER_H

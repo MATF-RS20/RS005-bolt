@@ -248,6 +248,7 @@
     border: 2px solid rgb(114, 159, 207);
     border-radius: 4px;
     padding: 2px;
+    background-image: url(:/images/mushrooms.jpg);
 }</string>
         </property>
         <property name="frameShape">

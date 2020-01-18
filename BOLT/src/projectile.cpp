@@ -1,6 +1,9 @@
-#include "headers/projectile.h"
+﻿#include "headers/projectile.h"
+#include "headers/invader.h"
 #include <QPainter>
-Projectile::Projectile()
+#include <QGraphicsScene>
+Projectile::Projectile(bool isTank,int speed)
+    :_isTenk(isTank),_speed(speed)
 {
 
 }
@@ -19,28 +22,45 @@ void Projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
     Q_UNUSED(option)
 
-    QColor r(55,0,50);
+    QColor r(qrand()%256,qrand()%256,qrand()%256);
     painter->setBrush(r);
-    painter->drawRect(-3,-4,6,8);
+    painter->drawEllipse(-4,-5,8,10);
 }
 
 
 
 void Projectile::advance(int step)
 {
-
     if (!step)
     {
-
-        return;
+         auto list = this->scene()->collidingItems(this);
+         foreach (QGraphicsItem* i, list) {
+              invader* item=dynamic_cast<invader*>(i);
+              if(item){
+                    if(!_isTenk){
+                 }
+               else{
+                 delete list[0];
+                 delete this;
+                }
+              }
+            }
+         return;
+     }else{
+        if(y()>20){
+               setPos(x(),y()-_speed);
+         }
+        else{
+            if(_isTenk)
+                 delete this;
+        }
+        if(y()<560){
+               setPos(x(),y()-_speed);
+         }
+        else{
+            if(!_isTenk)
+                 delete this;
+        }
     }
 
-    if (y()>-280){
-       auto a=y();
-        setPos(x(),y()-_speed);
-    }
-    else{
-
-        delete this;
-    }
 }

@@ -2,9 +2,10 @@
 #define IGRICA3_HPP
 
 #include <QWidget>
-
+#include <QGraphicsScene>
+#include <QGraphicsView>
 namespace Ui {
-class Igrica3;
+class Igrica1;
 }
 
 class Igrica3 : public QWidget
@@ -16,7 +17,20 @@ public:
     ~Igrica3();
 
 private:
-    Ui::Igrica3 *ui;
+    Ui::Igrica1 *ui;
+    QGraphicsScene *scene;
+    int _windowWidth;
+    int _windowHeight;
+    int _invaderSpeed;
+    int _invaderNumber;
+    void pokreniIgricu();
+public slots:
+    void setValue();
+
+signals:
+    void valueChanged();
+
+
 };
 
 #endif // IGRICA3_HPP
