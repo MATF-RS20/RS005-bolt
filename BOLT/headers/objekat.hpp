@@ -5,33 +5,36 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-class Objekat : public QGraphicsItem
+class Objekat : public QObject,public QGraphicsItem
 {
+    Q_OBJECT
 
 public:
     /* Loptu pozivamo sa dimenzijom zeljenog precnika i podatkom za koju igricu se crta,
      * zbog primene konkretne animacije te lopte */
     Objekat(int radius);
-    ~Objekat() override;
-    int getRadius();
+    virtual ~Objekat() override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                    QWidget *widget = nullptr) override;
+
     QRectF boundingRect() const override;
+
     QPainterPath shape() const override;
 
     void keyPressEvent(QKeyEvent *event) override;
 
+    static int brojLopti;
+
+    int getRadius();
     int getDirectionX();
     int getDirectionY();
     void setDirectionX(int x);
     void setDirectionY(int y);
-    int getX();
-    int getY();
 
 signals:
-    void loptaPogodjena();
-    void tenkUnisten();
+    void loptaPogodjena(qreal x, qreal y, int radijus);
+    void krajIgre(bool tenkUnisten );
 
 protected:
     void advance(int step) override;

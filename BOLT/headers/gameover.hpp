@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::GameOver *ui;
     Bolt *_main_ui;
-//    Igrica1 *_igrica1;
+    Igrica1 *_igrica1;
 
     int _windowWidth;
     int _windowHeight;
