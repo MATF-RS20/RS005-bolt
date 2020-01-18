@@ -17,7 +17,7 @@ Objekat::~Objekat()
     brojLopti--;
 }
 
-int Objekat::brojLopti = 0;
+
 
 void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -47,15 +47,10 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         BoltProjectile *projectile = dynamic_cast<BoltProjectile*>(item);
 
         if (projectile) {       // Sudar lopte sa projektilom
-
             //Saljemo signal za pravljenje nove dve lopte jer je ova pogodjena
             emit loptaPogodjena(this->x(),this->y(),this->getRadius());
-            brojLopti--;
             delete this;
-            if(brojLopti == 1 ){
-                qDebug()<<brojLopti;
-                emit krajIgre(false);
-            }
+
         }
         else if (tank) {        // Sudar lopte sa tenkom
 

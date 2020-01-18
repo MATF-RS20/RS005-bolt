@@ -30,6 +30,7 @@ Igrica1::~Igrica1()
     delete ui;
 }
 
+int Objekat::brojLopti = 0;
 
 void Igrica1::pokreniIgricu()
 {
@@ -81,7 +82,7 @@ void Igrica1::napraviNoveLopte(qreal x, qreal y, int r)
 {
     int noviRadijus = r - 20  ;
 
-    //Lopte trenutno crtam na proizvoljnoj lokaciji finalno ce to biti koordinate lopte koja je unistena
+    //Lopte crtam na koordinatama lopte koja je unistena
     Objekat* lopta1 = new Objekat(noviRadijus);
     lopta1->setPos(x, y);
 
