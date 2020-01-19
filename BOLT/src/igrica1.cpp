@@ -30,8 +30,6 @@ Igrica1::~Igrica1()
     delete ui;
 }
 
-int Objekat::brojLopti = 0;
-
 void Igrica1::pokreniIgricu()
 {
     scene = new QGraphicsScene(this);
@@ -71,6 +69,8 @@ void Igrica1::pokreniIgricu()
 
     QObject::connect(objLopta,SIGNAL(krajIgre(bool)), this, SLOT(zavrsiIgru(bool)));
 
+    QObject::connect(objLopta,SIGNAL(pobeda()), this, SLOT(zavrsiPobedom()));
+
     //Postavljam tajmer za kretanje lopte
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
@@ -103,19 +103,30 @@ void Igrica1::napraviNoveLopte(qreal x, qreal y, int r)
 
     //Da bi i nove lopte mogle da uniste tenk i zavrse igru i njih povezujemo
     QObject::connect(lopta1,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
+    QObject::connect(lopta1,SIGNAL(pobeda()),this,SLOT(zavrsiPobedom()));
+
     QObject::connect(lopta2,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
+    QObject::connect(lopta2,SIGNAL(pobeda()),this,SLOT(zavrsiPobedom()));
 }
 
 void Igrica1::zavrsiIgru(bool tenkUnisten)
+{
+    Q_UNUSED(tenkUnisten)
+
+    GameOver *_gameOver_ui;
+    _gameOver_ui = new GameOver();
+    close();
+    _gameOver_ui->show();
+}
+
+void Igrica1::zavrsiPobedom()
 {
     GameOver *_gameOver_ui;
     _gameOver_ui = new GameOver();
     close();
 
-    if(!tenkUnisten){
-        qDebug()<<"Pobeda";
-        _gameOver_ui->setStyleSheet("background-image: url(:/images/you_win.png);");
-    }
+    qDebug()<<"Pobeda";
+    _gameOver_ui->setStyleSheet("background-image: url(:/images/you_win.png);");
 
     _gameOver_ui->show();
 }

@@ -35,6 +35,7 @@ public:
 signals:
     void loptaPogodjena(qreal x, qreal y, int radijus);
     void krajIgre(bool tenkUnisten );
+    void pobeda();
 
 protected:
     void advance(int step) override;

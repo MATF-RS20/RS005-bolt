@@ -17,7 +17,7 @@ Objekat::~Objekat()
     brojLopti--;
 }
 
-
+int Objekat::brojLopti = 0;
 
 void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -26,6 +26,11 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     if(_radius<10){
         delete this; //Loptica je premalena pa je ne crtamo
+        qDebug()<<brojLopti;
+        if(brojLopti==0){
+            //Posalji signal Igrica1 da su sve loptice unistene
+            emit pobeda();
+        }
     }
 
     //Postavljamo boju lopte razlicitu za svaki nivo
@@ -50,7 +55,6 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
             //Saljemo signal za pravljenje nove dve lopte jer je ova pogodjena
             emit loptaPogodjena(this->x(),this->y(),this->getRadius());
             delete this;
-
         }
         else if (tank) {        // Sudar lopte sa tenkom
 
