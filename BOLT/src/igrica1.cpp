@@ -51,10 +51,11 @@ void Igrica1::pokreniIgricu()
 
     // Postavljamo sliku za pozadinu
     setStyleSheet("background-image: url(:/images/pozadina.png);");
-
-    //Kreiram prvu Loptu
+    int velicinaPocetneLopte = 60;
+    //Kreiram prvu Loptu velicine 60
     Objekat *objLopta = new Objekat(60);
-    objLopta->setPos(450,100);   //TODO: random pozicija [x,100] ge je x iz (50,850)
+    //Za x koordinatu pocetne lopte nasumicno biramo broj iz opsega (60,840)
+    objLopta->setPos(velicinaPocetneLopte+qrand()%(_windowWidth-2*velicinaPocetneLopte),100);
     scene->addItem(objLopta);
 
     //Kreiram tenk
