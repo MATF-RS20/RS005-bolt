@@ -28,7 +28,8 @@ SOURCES += \
     src/tank.cpp \
     src/projectile.cpp \
     src/invadertank.cpp \
-    src/objekat.cpp
+    src/objekat.cpp \
+    src/youwin.cpp
 
 HEADERS += \
     headers/gameover.hpp \
@@ -42,14 +43,16 @@ HEADERS += \
     headers/tank.h \
     headers/projectile.h \
     headers/invadertank.h \
-    headers/objekat.hpp
+    headers/objekat.hpp \
+    headers/youwin.hpp
 
 FORMS += \
     forms/bolt.ui \
     forms/igrica1.ui \
     forms/igrica2.ui \
     forms/igrica3.ui \
-    forms/gameover.ui
+    forms/gameover.ui \
+    forms/youwin.ui
 
 RESOURCES += \
     bolt.qrc

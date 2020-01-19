@@ -8,16 +8,16 @@
 Objekat::Objekat(int radius)
     : _radius(radius), _directionX(5), _directionY(5)
 {
-    brojLopti++;
+    //brojLopti++;
     setZValue(1);
 }
 
 Objekat::~Objekat()
 {
-    brojLopti--;
+    //brojLopti--;
 }
 
-int Objekat::brojLopti = 0;
+int Objekat::brojLopti = 8;
 
 void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -25,11 +25,13 @@ void Objekat::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     Q_UNUSED(widget)
 
     if(_radius<10){
+        brojLopti--;
         delete this; //Loptica je premalena pa je ne crtamo
         qDebug()<<brojLopti;
-        if(brojLopti==0){
+        if(!brojLopti){
             //Posalji signal Igrica1 da su sve loptice unistene
-            emit pobeda();
+            qDebug()<<"Pobedaaaaaaaaaaaaaaa";
+            emit krajPobedom(true);
         }
     }
 
@@ -102,17 +104,6 @@ void Objekat::advance(int step)
 int Objekat::getRadius()
 {
     return _radius;
-}
-
-void Objekat::keyPressEvent(QKeyEvent *event)
-{
-    switch (event->key()) {
-        case Qt::Key_Right:
-            moveBy(10, 10);
-            break;
-    }
-
-    update();
 }
 
 int Objekat::getDirectionX()

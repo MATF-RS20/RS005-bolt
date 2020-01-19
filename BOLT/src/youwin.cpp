@@ -1,8 +1,8 @@
-#include "headers/gameover.hpp"
-#include "ui_gameover.h"
+#include "headers/youwin.hpp"
+#include "ui_youwin.h"
 
-GameOver::GameOver(QWidget *parent) :
-    QWidget(parent),ui(new Ui::GameOver),
+YouWin::YouWin(QWidget *parent) :
+    QWidget(parent), ui(new Ui::YouWin),
     _windowWidth(600), _windowHeight(480)
 {
     ui->setupUi(this);
@@ -11,19 +11,19 @@ GameOver::GameOver(QWidget *parent) :
     move(300, 150);
 }
 
-GameOver::~GameOver()
+YouWin::~YouWin()
 {
     delete ui;
 }
 
-void GameOver::on_pushButton1_clicked()
+void YouWin::on_pushButton1_clicked()
 {
     _main_ui = new Bolt();
     hide();
     _main_ui->show();
 }
 
-void GameOver::on_pushButton2_clicked()
+void YouWin::on_pushButton2_clicked()
 {
     _igrica1 = new Igrica1();
     close();

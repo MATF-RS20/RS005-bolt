@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-class Objekat : public QObject,public QGraphicsItem
+class Objekat : public QGraphicsObject
 {
     Q_OBJECT
 
@@ -22,8 +22,6 @@ public:
 
     QPainterPath shape() const override;
 
-    void keyPressEvent(QKeyEvent *event) override;
-
     static int brojLopti;
 
     int getRadius();
@@ -34,8 +32,8 @@ public:
 
 signals:
     void loptaPogodjena(qreal x, qreal y, int radijus);
-    void krajIgre(bool tenkUnisten );
-    void pobeda();
+    void krajIgre(bool tenkUnisten);
+    void krajPobedom(bool lopteUnistene);
 
 protected:
     void advance(int step) override;
