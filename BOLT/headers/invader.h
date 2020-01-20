@@ -7,7 +7,7 @@
 class invader:public QGraphicsItem
 {
 public:
-    invader();
+    invader(int sgn=1,int speedLevel=2,int bingo=10);
 
     QRectF boundingRect() const override;
 
@@ -20,8 +20,12 @@ public:
 
 
     void advance(int step) override;
+    void toBeDeleted();
 private:
-    int _sgn=1;
+    int _sgn;
+    int _speedLevel;
+    int _bingo;
+    bool _toBeDeleted = false;
 };
 
 #endif // INVADER_H

@@ -9,13 +9,13 @@ Projectile::Projectile(bool isTank,int speed)
 }
 QRectF Projectile::boundingRect() const
 {
-    return QRectF(-3,-4,6,8);
+    return QRectF(-10,-9,10,9);
 }
 
 QPainterPath Projectile::shape() const
 {
     QPainterPath path;
-    path.addRect(-3,-4,6,8);
+    path.addRect(-10,-9,10,9);
     return path;
 }
 void Projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
@@ -24,7 +24,7 @@ void Projectile::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     QColor r(qrand()%256,qrand()%256,qrand()%256);
     painter->setBrush(r);
-    painter->drawEllipse(-4,-5,8,10);
+    painter->drawEllipse(-10,-9,10,9);
 }
 
 
@@ -40,7 +40,7 @@ void Projectile::advance(int step)
                     if(!_isTenk){
                  }
                else{
-                 delete list[0];
+                 item->toBeDeleted();
                  delete this;
                 }
               }

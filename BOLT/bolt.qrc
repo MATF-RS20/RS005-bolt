@@ -10,5 +10,10 @@
         <file>images/lp.png</file>
         <file>images/game_over.png</file>
         <file>images/you_win.png</file>
+        <file>images/tankk.png</file>
+        <file>images/in.png</file>
+        <file>images/go.jpg</file>
+        <file>music/Laser-shot.mp3</file>
+        <file>music/Restricted-Zone_Looping.mp3</file>
     </qresource>
 </RCC>

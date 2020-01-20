@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QMediaPlayer>
 namespace Ui {
-class Igrica1;
+class Igrica3;
 }
 
 class Igrica3 : public QWidget
@@ -13,19 +14,24 @@ class Igrica3 : public QWidget
     Q_OBJECT
 
 public:
-    explicit Igrica3(QWidget *parent = nullptr);
+    explicit Igrica3(QWidget *parent = nullptr,int _invaderNumber = 5);
     ~Igrica3();
 
 private:
-    Ui::Igrica1 *ui;
+    Ui::Igrica3 *ui;
     QGraphicsScene *scene;
     int _windowWidth;
     int _windowHeight;
     int _invaderSpeed;
     int _invaderNumber;
+    int _bingo;
+     QTimer *timer ;
+     QMediaPlayer * music = new QMediaPlayer();
+     bool over=false;
     void pokreniIgricu();
+    void gameOver();
 public slots:
-    void setValue();
+    void checkState();
 
 signals:
     void valueChanged();

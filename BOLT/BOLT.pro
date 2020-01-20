@@ -1,4 +1,6 @@
-QT       += core gui opengl
+QT       += core gui \
+            opengl \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +21,7 @@ SOURCES += \
     src/gameover.cpp \
     src/boltprojectile.cpp \
     src/bolttank.cpp \
+    src/gameoverinvader.cpp \
     src/igrica1.cpp \
     src/igrica2.cpp \
     src/igrica3.cpp \
@@ -35,6 +38,7 @@ HEADERS += \
     headers/boltprojectile.hpp \
     headers/bolttank.hpp \
     headers/bolt.hpp \
+    headers/gameoverinvader.h \
     headers/igrica1.hpp \
     headers/igrica2.hpp \
     headers/igrica3.hpp \
@@ -46,6 +50,7 @@ HEADERS += \
 
 FORMS += \
     forms/bolt.ui \
+    forms/form.ui \
     forms/igrica1.ui \
     forms/igrica2.ui \
     forms/igrica3.ui \
