@@ -21,7 +21,7 @@ public:
 public slots:
     void napraviNoveLopte(qreal x, qreal y,int radijus);
     void zavrsiIgru(bool tenkUnisten);
-    void zavrsiPobedom();
+    void zavrsiPobedom(bool lopteUnistene);
 private:
     Ui::Igrica1 *ui;
     QGraphicsScene *scene;

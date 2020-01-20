@@ -3,6 +3,7 @@
 #include "headers/objekat.hpp"
 #include "headers/bolttank.hpp"
 #include "headers/gameover.hpp"
+#include "headers/youwin.hpp"
 
 #include <QMainWindow>
 #include <QTimer>
@@ -17,8 +18,7 @@ Igrica1::Igrica1(QWidget *parent) :
 
     setWindowTitle("Bolt - Igrica 1");
 
-    /* Velicinu prozora stavljam u promenljivu,
-     * da bi velicina view-a i scene mogla da prati velicinu prozor.*/
+    /* Postavljam fiksnu velicinu prozora i stavljam ih u promenljivu*/
     setFixedSize(_windowWidth+5,_windowHeight+5);
     move(250, 750);
 
@@ -50,8 +50,10 @@ void Igrica1::pokreniIgricu()
     // Postavljamo sliku za pozadinu
     setStyleSheet("background-image: url(:/images/pozadina.png);");
     int velicinaPocetneLopte = 60;
+
     //Kreiram prvu Loptu velicine 60
     Objekat *objLopta = new Objekat(60);
+
     //Za x koordinatu pocetne lopte nasumicno biramo broj iz opsega (60,840)
     objLopta->setPos(velicinaPocetneLopte+qrand()%(_windowWidth-2*velicinaPocetneLopte),100);
     scene->addItem(objLopta);
@@ -68,8 +70,7 @@ void Igrica1::pokreniIgricu()
                      this, SLOT(napraviNoveLopte(qreal,qreal,int)));
 
     QObject::connect(objLopta,SIGNAL(krajIgre(bool)), this, SLOT(zavrsiIgru(bool)));
-
-    QObject::connect(objLopta,SIGNAL(pobeda()), this, SLOT(zavrsiPobedom()));
+    QObject::connect(objLopta,SIGNAL(krajPobedom(bool)),this,SLOT(zavrsiPobedom(bool)));
 
     //Postavljam tajmer za kretanje lopte
     QTimer *timer = new QTimer(this);
@@ -103,30 +104,34 @@ void Igrica1::napraviNoveLopte(qreal x, qreal y, int r)
 
     //Da bi i nove lopte mogle da uniste tenk i zavrse igru i njih povezujemo
     QObject::connect(lopta1,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
-    QObject::connect(lopta1,SIGNAL(pobeda()),this,SLOT(zavrsiPobedom()));
+    //QObject::connect(lopta1,SIGNAL(krajPobedom(bool)), this, SLOT(zavrsiPobedom(bool)));
+    QObject::connect(lopta1,SIGNAL(krajPobedom(bool)),this,SLOT(zavrsiPobedom(bool)));
 
     QObject::connect(lopta2,SIGNAL(krajIgre(bool)),this,SLOT(zavrsiIgru(bool)));
-    QObject::connect(lopta2,SIGNAL(pobeda()),this,SLOT(zavrsiPobedom()));
+    QObject::connect(lopta2,SIGNAL(krajPobedom(bool)), this, SLOT(zavrsiPobedom(bool)));
 }
 
 void Igrica1::zavrsiIgru(bool tenkUnisten)
 {
-    Q_UNUSED(tenkUnisten)
+    if(tenkUnisten){
+        GameOver *_gameOver_ui;
+        _gameOver_ui = new GameOver();
+        close();
 
-    GameOver *_gameOver_ui;
-    _gameOver_ui = new GameOver();
-    close();
-    _gameOver_ui->show();
+        _gameOver_ui->show();
+    }
 }
 
-void Igrica1::zavrsiPobedom()
+void Igrica1::zavrsiPobedom(bool lopteUnistene)
 {
-    GameOver *_gameOver_ui;
-    _gameOver_ui = new GameOver();
-    close();
+    if(lopteUnistene){
+            YouWin *_win_ui;
+            _win_ui = new YouWin();
+            close();
 
-    qDebug()<<"Pobeda";
-    _gameOver_ui->setStyleSheet("background-image: url(:/images/you_win.png);");
+            qDebug()<<"Pobeda";
 
-    _gameOver_ui->show();
+            _win_ui->show();
+        }
 }
+
