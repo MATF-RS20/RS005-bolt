@@ -56,9 +56,11 @@ void invader::advance(int step)
             p->setPos(x(),y());
             scene()->addItem(p);
         }
-       if(_toBeDeleted)
-           delete this;
        return;
+    }
+    else{
+         if(_toBeDeleted)
+              delete this;
     }
 
 }
